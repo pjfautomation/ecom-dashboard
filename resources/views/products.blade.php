@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary": "#8c5000", "primary-container": "#06b6d4", "on-error": "#ffffff", "on-secondary-fixed": "#111c2d", "on-primary-container": "#00424f", "on-tertiary-fixed": "#2d1600", "on-tertiary-container": "#5b3200", "on-primary-fixed-variant": "#004e5c", "surface-container-low": "#eff4ff", "inverse-on-surface": "#eaf1ff", "surface-variant": "#d9e3f6", "secondary-fixed": "#d8e3fb", "on-secondary-container": "#586377", "tertiary-fixed": "#ffdcbf", "on-secondary": "#ffffff", "outline-variant": "#bcc9cd", "surface-dim": "#d0dbed", "on-error-container": "#93000a", "on-secondary-fixed-variant": "#3c475a", "on-surface-variant": "#3d494c", "on-tertiary": "#ffffff", "primary": "#00687a", "inverse-surface": "#27313f", "inverse-primary": "#4cd7f6", "secondary-container": "#d5e0f8", "error": "#ba1a1a", "outline": "#6d797d", "background": "#f8f9ff", "surface-bright": "#f8f9ff", "surface-container-lowest": "#ffffff", "surface-container-high": "#dee9fc", "on-primary": "#ffffff", "primary-fixed": "#acedff", "on-primary-fixed": "#001f26", "surface": "#f8f9ff", "surface-container-highest": "#d9e3f6", "surface-tint": "#00687a", "surface-container": "#e6eeff", "error-container": "#ffdad6", "secondary": "#545f73", "on-tertiary-fixed-variant": "#6a3b00", "secondary-fixed-dim": "#bcc7de", "tertiary-container": "#e89337", "primary-fixed-dim": "#4cd7f6", "tertiary-fixed-dim": "#ffb873", "on-background": "#121c2a", "on-surface": "#121c2a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "space-lg": "1.5rem", "gutter": "1.5rem", "space-xs": "0.25rem", "margin": "2rem", "margin-mobile": "1rem", "space-xl": "2rem", "gutter-sm": "1rem", "space-md": "1rem" }, "fontFamily": { "body-lg": [ "Plus Jakarta Sans" ], "headline-sm": [ "Plus Jakarta Sans" ], "label-md": [ "Plus Jakarta Sans" ], "display-lg": [ "Plus Jakarta Sans" ], "body-sm": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "label-lg": [ "Plus Jakarta Sans" ], "label-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ] }, "fontSize": { "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "headline-sm": [ "16px", { "lineHeight": "24px", "fontWeight": "600" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" } ], "display-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "headline-md": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "600" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ] } } } };</script><style>
+@media (max-width: 1023px) {
+  #app-sidebar { transform: translateX(-100%); transition: transform .25s ease; }
+  #app-sidebar.is-open { transform: translateX(0); }
+  .pl-60 { padding-left: 0 !important; }
+  header { left: 0 !important; }
+  #sidebar-toggle { display: grid; }
+}
+#sidebar-toggle { display: none; }
+@media (max-width: 1023px) { #sidebar-toggle { display: grid; } }
+</style></head><body class="bg-[#F5F6F8] font-body-md text-on-surface antialiased min-h-screen"><button id="sidebar-toggle" type="button" class="fixed left-4 top-4 z-[80] h-10 w-10 place-items-center rounded-xl border border-[#E5E7EB] bg-white text-secondary shadow-lg" aria-label="Toggle sidebar" title="Toggle sidebar"><span class="material-symbols-outlined">menu</span></button><aside id="app-sidebar" class="fixed left-0 top-0 h-screen w-60 bg-surface-container-lowest border-r border-[#E5E7EB] z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="h-24 px-5 flex items-center gap-3 border-b border-[#E5E7EB]/60"><div class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[#f1f4f6] p-1"><img alt="Thread &amp; Co logo" class="h-full w-full object-contain" src="{{ asset('images/thread-co-logo.png') }}"/></div><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Thread &amp; Co</span></div><nav class="px-space-md py-space-lg flex flex-col gap-1" data-active-classes="bg-[#1E293B] text-white font-label-lg rounded-xl"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="overview" href="/"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Overview</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="orders" href="/orders"><span class="material-symbols-outlined text-[20px]">shopping_bag</span><span>Orders</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-2.5 transition-colors bg-[#1E293B] text-white font-label-lg rounded-xl" data-path="products" href="/products"><span class="material-symbols-outlined text-[20px]">checkroom</span><span>Products</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="customers" href="/customers"><span class="material-symbols-outlined text-[20px]">group</span><span>Customers</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="analytics" href="/analytics"><span class="material-symbols-outlined text-[20px]">analytics</span><span>Analytics</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="marketing" href="/marketing"><span class="material-symbols-outlined text-[20px]">campaign</span><span>Marketing</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="settings" href="/settings"><span class="material-symbols-outlined text-[20px]">settings</span><span>Settings</span></a></nav></div><div class="p-space-md border-t border-[#E5E7EB]/60"><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-label-md text-label-md text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" href="#" target="_blank"><span>View Live Store</span><span class="material-symbols-outlined text-[18px]">open_in_new</span></a></div></aside><div class="pl-60"><header class="fixed top-0 left-60 right-0 h-20 bg-surface-container-lowest/95 backdrop-blur-md border-b border-[#E5E7EB] z-40 px-6 lg:px-10 flex items-center justify-between gap-6"><div class="flex min-w-0 flex-1 items-center"><h2 class="truncate font-headline-sm text-headline-sm text-on-surface">Products</h2></div><div class="flex shrink-0 items-center gap-3 lg:gap-5"><div class="flex items-center gap-2 px-3.5 py-2 bg-surface-container-lowest border border-[#E5E7EB] rounded-full text-secondary"><span class="material-symbols-outlined text-[18px]">search</span><span class="font-body-sm text-body-sm text-secondary hidden sm:inline">Search products...</span></div><button id="notifications-button" type="button" class="relative w-10 h-10 rounded-full flex items-center justify-center text-secondary hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error"></span></button><div class="relative border-l border-[#E5E7EB] pl-3"><button id="profile-button" type="button" class="flex items-center gap-2 rounded-full p-1 hover:bg-[#F3F4F6]"><img alt="Profile" class="w-9 h-9 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFmkXMrn_7ixpAdQlDIVfe8lp5C5CNsa8QddYeeOLQx0fIURK85fmcg8J6URe1oqTrjrGE4PF70o90DX_V_RVCYB2aF03VKJB4VGmLuR0dETraHI0-b0FLK-GHgNPWzVUaGUu5gTQAt4Cw0c47P9blvDOwSdzczTirv4-2ilrS0NO83YxKw0kw8ofjovwbmdy0cnAi_snOYrU9XNfJ0quHR9026Xu6O7nEcDJT_NAEGfGooNfYuqKf"/><span class="material-symbols-outlined text-[18px] text-secondary">expand_more</span></button></div></div></header><main class="relative pt-24 w-full min-h-screen px-space-xl py-8 bg-[#F5F6F8]"><div class="flex flex-col w-full gap-space-lg pb-12">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Products</h1>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm">Catalog v2.4</span>
+</div>
+<p class="font-body-md text-body-md text-secondary mt-1">Manage apparel inventory, stock levels, variants, and pricing.</p>
+</div>
+<div class="flex items-center gap-3 self-start md:self-auto">
+<button class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface font-label-lg text-label-lg shadow-sm hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-[18px] text-secondary">swap_vert</span>
+<span>Import / Export</span>
+</button>
+<button class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary-container text-on-error font-label-lg text-label-lg shadow-sm hover:brightness-95 transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Add Product</span>
+</button>
+</div>
+</div>
+<!-- Filter & Summary Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md bg-surface-container-lowest p-2.5 rounded-2xl shadow-sm">
+<!-- Filter Status Pills -->
+<div class="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0" id="filter-pill-container">
+<button class="product-tab active-tab inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1E293B] text-surface-container-lowest font-label-md text-label-md transition-all">
+<span>All Products</span>
+<span class="bg-surface-container-lowest/20 px-2 py-0.5 rounded-full text-label-sm font-label-sm">86</span>
+</button>
+<button class="product-tab inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-low hover:bg-surface-container text-secondary hover:text-on-surface font-label-md text-label-md transition-all">
+<span>In Stock</span>
+<span class="bg-surface-container px-2 py-0.5 rounded-full text-label-sm font-label-sm">72</span>
+</button>
+<button class="product-tab inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-low hover:bg-surface-container text-secondary hover:text-on-surface font-label-md text-label-md transition-all">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span>Low Stock</span>
+<span class="bg-surface-container px-2 py-0.5 rounded-full text-label-sm font-label-sm">8</span>
+</button>
+<button class="product-tab inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-low hover:bg-surface-container text-secondary hover:text-on-surface font-label-md text-label-md transition-all">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span>Out of Stock</span>
+<span class="bg-surface-container px-2 py-0.5 rounded-full text-label-sm font-label-sm">6</span>
+</button>
+</div>
+<!-- Search & Dropdown Actions -->
+<div class="flex items-center gap-2.5">
+<div class="relative flex-1 sm:w-64">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-[18px] text-secondary">search</span>
+<input class="w-full pl-10 pr-4 py-2 rounded-full bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm transition-all" placeholder="Search products, SKU, barcode..." type="text"/>
+</div>
+<div class="relative">
+<button class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-all" id="categoryDropdownBtn">
+<span class="material-symbols-outlined text-[18px] text-secondary">tune</span>
+<span id="categoryLabel">All Categories</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">expand_more</span>
+</button>
+<div class="hidden absolute right-0 mt-2 w-48 bg-surface-container-lowest rounded-xl shadow-xl py-1.5 z-20" id="categoryMenu">
+<a class="category-item block px-4 py-2 font-label-md text-label-md text-on-surface hover:bg-surface-container-low" href="javascript:void(0)">All Categories</a>
+<a class="category-item block px-4 py-2 font-label-md text-label-md text-secondary hover:text-on-surface hover:bg-surface-container-low" href="javascript:void(0)">Hoodies</a>
+<a class="category-item block px-4 py-2 font-label-md text-label-md text-secondary hover:text-on-surface hover:bg-surface-container-low" href="javascript:void(0)">Tees</a>
+<a class="category-item block px-4 py-2 font-label-md text-label-md text-secondary hover:text-on-surface hover:bg-surface-container-low" href="javascript:void(0)">Jackets</a>
+<a class="category-item block px-4 py-2 font-label-md text-label-md text-secondary hover:text-on-surface hover:bg-surface-container-low" href="javascript:void(0)">Pants</a>
+<a class="category-item block px-4 py-2 font-label-md text-label-md text-secondary hover:text-on-surface hover:bg-surface-container-low" href="javascript:void(0)">Knitwear</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Inventory Table Card -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden flex flex-col">
+<!-- Table Header Info / Bulk Actions -->
+<div class="px-6 py-4 flex items-center justify-between bg-surface-container-lowest">
+<div class="flex items-center gap-3">
+<label class="inline-flex items-center cursor-pointer">
+<input class="w-4 h-4 rounded text-primary-container focus:ring-0 cursor-pointer accent-[#06b6d4]" id="selectAllCheckbox" type="checkbox"/>
+</label>
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Inventory Batch Selection</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-body-sm text-body-sm text-secondary hidden sm:inline">Bulk updates:</span>
+<button class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low text-secondary hover:text-on-surface font-label-sm text-label-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+<span>Set Status</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low text-secondary hover:text-on-surface font-label-sm text-label-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">label</span>
+<span>Apply Tag</span>
+</button>
+</div>
+</div>
+<!-- Main Table Container -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/70">
+<th class="w-12 px-6 py-3.5">
+<span class="sr-only">Select</span>
+</th>
+<th class="px-4 py-3.5 font-label-sm text-label-sm text-secondary uppercase tracking-wider">Product</th>
+<th class="px-4 py-3.5 font-label-sm text-label-sm text-secondary uppercase tracking-wider">Category</th>
+<th class="px-4 py-3.5 font-label-sm text-label-sm text-secondary uppercase tracking-wider">Variants</th>
+<th class="px-4 py-3.5 font-label-sm text-label-sm text-secondary uppercase tracking-wider">Stock Quantity</th>
+<th class="px-4 py-3.5 font-label-sm text-label-sm text-secondary uppercase tracking-wider">Price / Margin</th>
+<th class="px-4 py-3.5 font-label-sm text-label-sm text-secondary uppercase tracking-wider">Status</th>
+<th class="px-6 py-3.5 text-right font-label-sm text-label-sm text-secondary uppercase tracking-wider">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y-0" id="productTableBody">
+<!-- Row 1: Heavyweight French Terry Hoodie -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4 align-middle">
+<input class="product-row-check w-4 h-4 rounded text-primary-container focus:ring-0 cursor-pointer accent-[#06b6d4]" type="checkbox"/>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="flex items-center gap-3.5">
+<div class="w-12 h-14 rounded-lg bg-surface-container-low overflow-hidden flex-shrink-0 shadow-sm relative">
+<img class="w-full h-full object-cover" data-alt="High-end heavyweight French terry hoodie in washed vintage charcoal grey laid flat on clean architectural concrete surface, subtle studio editorial apparel lighting, muted tone" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJWsOs5U7gS6Y24HsWhvZWady2CqhUhjObdw7Y2CviH4bDWwfDT_-SGs6Yu4KiWKtUH0wHY0IdQUBZaoR9wtiS0GM6VlwBP0Yur7kEXwrrJ3afSTKpIjHw6lesXD2KGP1apljf0w0u-9PxQqMv4yoR7swqiEzGaRc6AANRcMtJe5DDd6bAkdIzrK-ZqRqek9Un7XO6Z-wohxEIzuLfrdz8i6_BjtxzFf9vFLmrbr5TWgDNX148BUf-"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate group-hover:text-primary transition-colors">Heavyweight French Terry Hoodie</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm text-secondary">SKU: HD-802</span>
+<span class="text-secondary/40">•</span>
+<span class="font-label-sm text-label-sm text-secondary">460 GSM</span>
+</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm">
+                Hoodies
+              </span>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-medium">6 variants</span>
+<span class="font-body-sm text-body-sm text-secondary">S, M, L, XL, XXL</span>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#DCFCE7] text-[#16A34A] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#16A34A]"></span>
+<span>48 in stock</span>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">$88.00</span>
+<span class="font-body-sm text-body-sm text-secondary">Margin 62%</span>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+                Active
+              </span>
+</td>
+<td class="px-6 py-4 align-middle text-right">
+<div class="inline-flex items-center gap-1">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Edit Product">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Duplicate">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="More options">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: 280GSM Boxy Drop-Shoulder Tee -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group bg-surface-container-lowest">
+<td class="px-6 py-4 align-middle">
+<input class="product-row-check w-4 h-4 rounded text-primary-container focus:ring-0 cursor-pointer accent-[#06b6d4]" type="checkbox"/>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="flex items-center gap-3.5">
+<div class="w-12 h-14 rounded-lg bg-surface-container-low overflow-hidden flex-shrink-0 shadow-sm relative">
+<img class="w-full h-full object-cover" data-alt="Minimalist luxury oversized organic cotton crewneck tee in chalk white hanging against a warm oat-colored backdrop, soft shadows, studio lookbook quality" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6h97EbDjTe67kiSJduN1e0OnX3bAu5FIWHbm9eWusCi_FaYARuRJ7Eh0Zlf_ONaz1qdjlXN1Bu3Ka-BlInOQU6K9QGi7TvJlKFpoFVm-s0nPt0PYppXQLH7sNzx4p5TBqBwnCrLpPsyCVR8fFA4sYSXvvPyXeUVuqayL2oS7wHCgaiRMHnN0cMXN6FTk0Nf3Edq-ZflWJ2xZBslvWIgVIWgHhi_5VgBMmJHRUkOgWmUklfTV9hPLv"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate group-hover:text-primary transition-colors">280GSM Boxy Drop-Shoulder Tee</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm text-secondary">SKU: TE-104</span>
+<span class="text-secondary/40">•</span>
+<span class="font-label-sm text-label-sm text-secondary">Compact Combed</span>
+</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-primary-fixed/40 text-on-primary-fixed-variant font-label-sm text-label-sm">
+                Tees
+              </span>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-medium">8 variants</span>
+<span class="font-body-sm text-body-sm text-secondary">White, Black, Sage</span>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#DCFCE7] text-[#16A34A] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#16A34A]"></span>
+<span>114 in stock</span>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">$42.00</span>
+<span class="font-body-sm text-body-sm text-secondary">Margin 71%</span>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+                Active
+              </span>
+</td>
+<td class="px-6 py-4 align-middle text-right">
+<div class="inline-flex items-center gap-1">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Edit Product">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Duplicate">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="More options">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Japanese Selvedge Denim Jacket -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group bg-surface-container-lowest">
+<td class="px-6 py-4 align-middle">
+<input class="product-row-check w-4 h-4 rounded text-primary-container focus:ring-0 cursor-pointer accent-[#06b6d4]" type="checkbox"/>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="flex items-center gap-3.5">
+<div class="w-12 h-14 rounded-lg bg-surface-container-low overflow-hidden flex-shrink-0 shadow-sm relative">
+<img class="w-full h-full object-cover" data-alt="Raw deep indigo denim trucker jacket featuring bronze shank hardware and selvedge edge detail, modern Japanese tailored streetwear fit, crisp product studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdnAsD1fmh42aWbXecUfJX7XTohqyBRZx6o-bcUZWC0IrJzzalvn3c_F_utPCSx1kbVezwYVY5IC_gKdx1Hko0becDJDlTBoAYAEeKSFKhK1PKIolKINkivgndZes6fJdCDzoe6V0gawVsiVXrPI-j5yQmXQNvCQGi5i0S2BVL9n5JdPjkSmz5GqSKXLT7JHI8s7lmv0R3A8VIG8g3Ip_09-UmZV7Bkj6UAmCRQRLbpcTlzQLYdATF"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate group-hover:text-primary transition-colors">Japanese Selvedge Denim Jacket</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm text-secondary">SKU: JK-501</span>
+<span class="text-secondary/40">•</span>
+<span class="font-label-sm text-label-sm text-secondary">14.5oz Kuroki Mills</span>
+</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+                Jackets
+              </span>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-medium">4 variants</span>
+<span class="font-body-sm text-body-sm text-secondary">S, M, L, XL</span>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FEF3C7] text-[#F59E0B] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"></span>
+<span>3 left</span>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">$195.00</span>
+<span class="font-body-sm text-body-sm text-secondary">Margin 58%</span>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+                Active
+              </span>
+</td>
+<td class="px-6 py-4 align-middle text-right">
+<div class="inline-flex items-center gap-1">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Edit Product">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Duplicate">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="More options">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Relaxed Pleated Utility Trouser -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group bg-surface-container-lowest">
+<td class="px-6 py-4 align-middle">
+<input class="product-row-check w-4 h-4 rounded text-primary-container focus:ring-0 cursor-pointer accent-[#06b6d4]" type="checkbox"/>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="flex items-center gap-3.5">
+<div class="w-12 h-14 rounded-lg bg-surface-container-low overflow-hidden flex-shrink-0 shadow-sm relative">
+<img class="w-full h-full object-cover" data-alt="Olive drab relaxed wide-leg pleated workwear trousers made of cotton ripstop fabric draped neatly, architectural studio photography, clean product display" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCFqWR5KF4BBA7-vv78iQu8PbOKE3n0bHVtYaFZgs0v3rLcgFtFaLwG58JfFlavH7iSQKk4rnLI2sHzds-fqnNd689GDnC54qdeZYpqmkjDYZB2zBbLz0MV1sO00tBCFoEfZfnsUhfJLlFtthUqz37rBaEVl6Xk0Hqxbfh_23uDRUHrFFqW4WjUL0Ukvmj0FMPWl_bS1wfuCWbn61O26ZAcD7354GZwlpSjVfLpo68voxwty67x-YP"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate group-hover:text-primary transition-colors">Relaxed Pleated Utility Trouser</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm text-secondary">SKU: PT-309</span>
+<span class="text-secondary/40">•</span>
+<span class="font-label-sm text-label-sm text-secondary">Cotton Ripstop</span>
+</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-surface-variant text-on-surface-variant font-label-sm text-label-sm">
+                Pants
+              </span>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-medium">5 variants</span>
+<span class="font-body-sm text-body-sm text-secondary">30, 32, 34, 36</span>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FEE2E2] text-[#DC2626] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#DC2626]"></span>
+<span>0 in stock</span>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">$118.00</span>
+<span class="font-body-sm text-body-sm text-secondary">Margin 65%</span>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+                Active
+              </span>
+</td>
+<td class="px-6 py-4 align-middle text-right">
+<div class="inline-flex items-center gap-1">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Edit Product">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Duplicate">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="More options">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Merino Wool Waffle Knit Crewneck -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group bg-surface-container-lowest">
+<td class="px-6 py-4 align-middle">
+<input class="product-row-check w-4 h-4 rounded text-primary-container focus:ring-0 cursor-pointer accent-[#06b6d4]" type="checkbox"/>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="flex items-center gap-3.5">
+<div class="w-12 h-14 rounded-lg bg-surface-container-low overflow-hidden flex-shrink-0 shadow-sm relative">
+<img class="w-full h-full object-cover" data-alt="Chunky waffle knit merino wool crewneck sweater in neutral heather oatmeal folded neatly on warm grey backdrop, premium cashmere apparel texture, natural daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRV04i8dmqsoL2wm7f2_Y7efTFaY-BJXtSgRZBEpLdulIS0lzGP4Jmwge8SMbLo-4Xl78ThbTZ141aznViMM2FouonZUbLg3QVbiiQv8ioahLWqWDTHwYcbaULdDqzLQajlDqSJkf-EFoELULNAQgkxKD8GGwVsZf8u0custGbc9kSUonQP-Zh7Q7ohkHkWerpqAQp818NN9Y-4e9U5ElEYHefEDREzCcYfy2fzYuqKP1miedUqcei"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate group-hover:text-primary transition-colors">Merino Wool Waffle Knit Crewneck</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm text-secondary">SKU: KN-202</span>
+<span class="text-secondary/40">•</span>
+<span class="font-label-sm text-label-sm text-secondary">100% Merino</span>
+</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-tertiary-fixed/60 text-on-tertiary-fixed-variant font-label-sm text-label-sm">
+                Knitwear
+              </span>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-medium">3 variants</span>
+<span class="font-body-sm text-body-sm text-secondary">Charcoal, Oatmeal</span>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FEF3C7] text-[#F59E0B] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"></span>
+<span>2 left</span>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">$135.00</span>
+<span class="font-body-sm text-body-sm text-secondary">Margin 60%</span>
+</div>
+</td>
+<td class="px-4 py-4 align-middle">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+                Active
+              </span>
+</td>
+<td class="px-6 py-4 align-middle text-right">
+<div class="inline-flex items-center gap-1">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Edit Product">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Duplicate">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="More options">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-space-md bg-surface-container-lowest">
+<div class="font-body-sm text-body-sm text-secondary">
+        Showing <span class="font-label-md text-label-md text-on-surface">1</span> to <span class="font-label-md text-label-md text-on-surface">5</span> of <span class="font-label-md text-label-md text-on-surface">86</span> products
+      </div>
+<div class="flex items-center gap-1.5">
+<button class="inline-flex items-center justify-center px-3.5 py-1.5 rounded-full bg-surface-container-low text-secondary hover:text-on-surface hover:bg-surface-container font-label-sm text-label-sm transition-colors">
+          Previous
+        </button>
+<button class="w-8 h-8 rounded-full bg-[#1E293B] text-surface-container-lowest font-label-sm text-label-sm flex items-center justify-center shadow-sm">
+          1
+        </button>
+<button class="w-8 h-8 rounded-full bg-transparent hover:bg-surface-container-low text-secondary hover:text-on-surface font-label-sm text-label-sm flex items-center justify-center transition-colors">
+          2
+        </button>
+<button class="w-8 h-8 rounded-full bg-transparent hover:bg-surface-container-low text-secondary hover:text-on-surface font-label-sm text-label-sm flex items-center justify-center transition-colors">
+          3
+        </button>
+<span class="w-6 text-center text-secondary font-label-sm text-label-sm">...</span>
+<button class="w-8 h-8 rounded-full bg-transparent hover:bg-surface-container-low text-secondary hover:text-on-surface font-label-sm text-label-sm flex items-center justify-center transition-colors">
+          8
+        </button>
+<button class="inline-flex items-center justify-center px-3.5 py-1.5 rounded-full bg-surface-container-low text-secondary hover:text-on-surface hover:bg-surface-container font-label-sm text-label-sm transition-colors">
+          Next
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    // Select all functionality
+    const selectAll = document.getElementById('selectAllCheckbox');
+    const rowCheckboxes = document.querySelectorAll('.product-row-check');
+
+    if (selectAll) {
+      selectAll.addEventListener('change', (e) => {
+        rowCheckboxes.forEach(cb => {
+          cb.checked = e.target.checked;
+        });
+      });
+    }
+
+    // Category dropdown toggle
+    const catBtn = document.getElementById('categoryDropdownBtn');
+    const catMenu = document.getElementById('categoryMenu');
+    const catLabel = document.getElementById('categoryLabel');
+
+    if (catBtn && catMenu) {
+      catBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        catMenu.classList.toggle('hidden');
+      });
+
+      document.querySelectorAll('.category-item').forEach(item => {
+        item.addEventListener('click', () => {
+          catLabel.textContent = item.textContent.trim();
+          catMenu.classList.add('hidden');
+        });
+      });
+
+      document.addEventListener('click', () => {
+        if (!catMenu.classList.contains('hidden')) {
+          catMenu.classList.add('hidden');
+        }
+      });
+    }
+
+    // Filter pill interaction
+    const filterTabs = document.querySelectorAll('.product-tab');
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach(t => {
+          t.className = "product-tab inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-low hover:bg-surface-container text-secondary hover:text-on-surface font-label-md text-label-md transition-all";
+        });
+        tab.className = "product-tab active-tab inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1E293B] text-surface-container-lowest font-label-md text-label-md transition-all";
+      });
+    });
+  })();
+</script></main></div><div id="shared-notifications-menu" class="fixed right-20 top-20 z-[70] hidden w-72 rounded-xl border border-[#E5E7EB] bg-white p-3 shadow-xl"><div class="flex items-center justify-between border-b border-[#E5E7EB] pb-2"><b class="text-sm">Notifications</b><button id="shared-mark-read" type="button" class="text-xs text-primary hover:underline">Mark all read</button></div><button type="button" class="mt-2 flex w-full gap-2 rounded-lg p-2 text-left text-xs hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-base text-tertiary">inventory_2</span><span><b>Low stock alert</b><br><span class="text-secondary">Heavyweight Hoodie has 6 left.</span></span></button><button type="button" class="flex w-full gap-2 rounded-lg p-2 text-left text-xs hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-base text-primary">shopping_bag</span><span><b>New order received</b><br><span class="text-secondary">Order #ORD-9842 is ready.</span></span></button></div><div id="shared-profile-menu" class="fixed right-4 top-20 z-[70] hidden w-52 rounded-xl border border-[#E5E7EB] bg-white p-2 shadow-xl"><div class="border-b border-[#E5E7EB] px-3 py-2"><b class="text-sm">Sarah Wilson</b><p class="text-xs text-secondary">Store administrator</p></div><button type="button" class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-xs hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-base">person</span>Account settings</button><button type="button" class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-xs hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-base">logout</span>Sign out</button></div><script>
+(() => {
+  const sidebar=document.getElementById('app-sidebar'), toggle=document.getElementById('sidebar-toggle');
+  toggle?.addEventListener('click',()=>sidebar.classList.toggle('is-open'));
+  const notification=document.getElementById('notifications-button'), profile=document.getElementById('profile-button');
+  const notificationMenu=document.getElementById('shared-notifications-menu') || document.getElementById('notifications-menu');
+  const profileMenu=document.getElementById('shared-profile-menu') || document.getElementById('profile-menu');
+  notification?.addEventListener('click',e=>{e.stopPropagation(); notificationMenu?.classList.toggle('hidden'); profileMenu?.classList.add('hidden');});
+  profile?.addEventListener('click',e=>{e.stopPropagation(); profileMenu?.classList.toggle('hidden'); notificationMenu?.classList.add('hidden');});
+  document.getElementById('shared-mark-read')?.addEventListener('click',()=>document.getElementById('notification-dot')?.classList.add('hidden'));
+  document.addEventListener('click',()=>{notificationMenu?.classList.add('hidden');profileMenu?.classList.add('hidden');});
+})();
+</script></body></html>
+
+
+
+
+
+
+
+
+
+
+
