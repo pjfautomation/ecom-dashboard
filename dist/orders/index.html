@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary": "#8c5000", "primary-container": "#06b6d4", "on-error": "#ffffff", "on-secondary-fixed": "#111c2d", "on-primary-container": "#00424f", "on-tertiary-fixed": "#2d1600", "on-tertiary-container": "#5b3200", "on-primary-fixed-variant": "#004e5c", "surface-container-low": "#eff4ff", "inverse-on-surface": "#eaf1ff", "surface-variant": "#d9e3f6", "secondary-fixed": "#d8e3fb", "on-secondary-container": "#586377", "tertiary-fixed": "#ffdcbf", "on-secondary": "#ffffff", "outline-variant": "#bcc9cd", "surface-dim": "#d0dbed", "on-error-container": "#93000a", "on-secondary-fixed-variant": "#3c475a", "on-surface-variant": "#3d494c", "on-tertiary": "#ffffff", "primary": "#00687a", "inverse-surface": "#27313f", "inverse-primary": "#4cd7f6", "secondary-container": "#d5e0f8", "error": "#ba1a1a", "outline": "#6d797d", "background": "#f8f9ff", "surface-bright": "#f8f9ff", "surface-container-lowest": "#ffffff", "surface-container-high": "#dee9fc", "on-primary": "#ffffff", "primary-fixed": "#acedff", "on-primary-fixed": "#001f26", "surface": "#f8f9ff", "surface-container-highest": "#d9e3f6", "surface-tint": "#00687a", "surface-container": "#e6eeff", "error-container": "#ffdad6", "secondary": "#545f73", "on-tertiary-fixed-variant": "#6a3b00", "secondary-fixed-dim": "#bcc7de", "tertiary-container": "#e89337", "primary-fixed-dim": "#4cd7f6", "tertiary-fixed-dim": "#ffb873", "on-background": "#121c2a", "on-surface": "#121c2a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "space-lg": "1.5rem", "gutter": "1.5rem", "space-xs": "0.25rem", "margin": "2rem", "margin-mobile": "1rem", "space-xl": "2rem", "gutter-sm": "1rem", "space-md": "1rem" }, "fontFamily": { "body-lg": [ "Plus Jakarta Sans" ], "headline-sm": [ "Plus Jakarta Sans" ], "label-md": [ "Plus Jakarta Sans" ], "display-lg": [ "Plus Jakarta Sans" ], "body-sm": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "label-lg": [ "Plus Jakarta Sans" ], "label-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ] }, "fontSize": { "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "headline-sm": [ "16px", { "lineHeight": "24px", "fontWeight": "600" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" } ], "display-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "headline-md": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "600" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ] } } } };</script><style>
+@media (max-width: 1023px) {
+  #app-sidebar { transform: translateX(-100%); transition: transform .25s ease; }
+  #app-sidebar.is-open { transform: translateX(0); }
+  .pl-60 { padding-left: 0 !important; }
+  header { left: 0 !important; }
+  #sidebar-toggle { display: grid; }
+}
+#sidebar-toggle { display: none; }
+@media (max-width: 1023px) { #sidebar-toggle { display: grid; } }
+</style></head><body class="bg-[#F5F6F8] font-body-md text-on-surface antialiased min-h-screen"><button id="sidebar-toggle" type="button" class="fixed left-4 top-4 z-[80] h-10 w-10 place-items-center rounded-xl border border-[#E5E7EB] bg-white text-secondary shadow-lg" aria-label="Toggle sidebar" title="Toggle sidebar"><span class="material-symbols-outlined">menu</span></button><aside id="app-sidebar" class="fixed left-0 top-0 h-screen w-60 bg-surface-container-lowest border-r border-[#E5E7EB] z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="h-24 px-5 flex items-center gap-3 border-b border-[#E5E7EB]/60"><div class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[#f1f4f6] p-1"><img alt="Thread &amp; Co logo" class="h-full w-full object-contain" src="http://127.0.0.1:8000/images/thread-co-logo.png"/></div><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Thread &amp; Co</span></div><nav class="px-space-md py-space-lg flex flex-col gap-1" data-active-classes="bg-[#1E293B] text-white font-label-lg rounded-xl"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="overview" href="/"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Overview</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-2.5 transition-colors bg-[#1E293B] text-white font-label-lg rounded-xl" data-path="orders" href="#orders"><span class="material-symbols-outlined text-[20px]">shopping_bag</span><span>Orders</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="products" href="/products"><span class="material-symbols-outlined text-[20px]">checkroom</span><span>Products</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="customers" href="/customers"><span class="material-symbols-outlined text-[20px]">group</span><span>Customers</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="analytics" href="/analytics"><span class="material-symbols-outlined text-[20px]">analytics</span><span>Analytics</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="marketing" href="/marketing"><span class="material-symbols-outlined text-[20px]">campaign</span><span>Marketing</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="settings" href="/settings"><span class="material-symbols-outlined text-[20px]">settings</span><span>Settings</span></a></nav></div><div class="p-space-md border-t border-[#E5E7EB]/60"><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-label-md text-label-md text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" href="#" target="_blank"><span>View Live Store</span><span class="material-symbols-outlined text-[18px]">open_in_new</span></a></div></aside><div class="pl-60"><header class="fixed top-0 left-60 right-0 h-20 bg-surface-container-lowest/95 backdrop-blur-md border-b border-[#E5E7EB] z-40 px-6 lg:px-10 flex items-center justify-between gap-6"><div class="flex min-w-0 flex-1 items-center"><h2 class="truncate font-headline-sm text-headline-sm text-on-surface">Orders</h2></div><div class="flex shrink-0 items-center gap-3 lg:gap-5"><div class="flex items-center gap-2 px-3.5 py-2 bg-surface-container-lowest border border-[#E5E7EB] rounded-full text-secondary"><span class="material-symbols-outlined text-[18px]">search</span><span class="font-body-sm text-body-sm text-secondary hidden sm:inline">Search orders...</span></div><button id="notifications-button" type="button" class="relative w-10 h-10 rounded-full flex items-center justify-center text-secondary hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error"></span></button><div class="relative border-l border-[#E5E7EB] pl-3"><button id="profile-button" type="button" class="flex items-center gap-2 rounded-full p-1 hover:bg-[#F3F4F6]"><img alt="Profile" class="w-9 h-9 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFmkXMrn_7ixpAdQlDIVfe8lp5C5CNsa8QddYeeOLQx0fIURK85fmcg8J6URe1oqTrjrGE4PF70o90DX_V_RVCYB2aF03VKJB4VGmLuR0dETraHI0-b0FLK-GHgNPWzVUaGUu5gTQAt4Cw0c47P9blvDOwSdzczTirv4-2ilrS0NO83YxKw0kw8ofjovwbmdy0cnAi_snOYrU9XNfJ0quHR9026Xu6O7nEcDJT_NAEGfGooNfYuqKf"/><span class="material-symbols-outlined text-[18px] text-secondary">expand_more</span></button></div></div></header><main class="relative pt-24 w-full min-h-screen px-space-xl py-8 bg-[#F5F6F8]"><div class="flex flex-col w-full gap-space-lg">
+<!-- Top Stats Strip -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg mb-2">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Awaiting Fulfillment</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-display-lg text-display-lg text-on-surface">18</span>
+<span class="font-label-sm text-label-sm text-tertiary font-semibold flex items-center">
+<span class="material-symbols-outlined text-[14px] mr-0.5">priority_high</span>Action req.
+          </span>
+</div>
+</div>
+<div class="w-11 h-11 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-[22px]">pending_actions</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Fulfilled Today</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-display-lg text-display-lg text-on-surface">42</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold flex items-center">
+<span class="material-symbols-outlined text-[14px] mr-0.5">trending_up</span>+14%
+          </span>
+</div>
+</div>
+<div class="w-11 h-11 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[22px]">local_shipping</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Total Sales Volume</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-display-lg text-display-lg text-on-surface">$12,480</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Today</span>
+</div>
+</div>
+<div class="w-11 h-11 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined text-[22px]">payments</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Avg. Dispatch Time</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-display-lg text-display-lg text-on-surface">2.4<span class="font-headline-sm text-headline-sm ml-0.5">hrs</span></span>
+<span class="font-label-sm text-label-sm text-primary font-semibold flex items-center">
+<span class="material-symbols-outlined text-[14px] mr-0.5">bolt</span>Optimal
+          </span>
+</div>
+</div>
+<div class="w-11 h-11 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[22px]">timer</span>
+</div>
+</div>
+</div>
+<!-- Header & Primary Actions -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Orders</h1>
+<p class="font-body-sm text-body-sm text-secondary mt-0.5">Manage, process, and track your store fulfillment across all channels.</p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="relative flex items-center min-w-[280px]">
+<span class="material-symbols-outlined absolute left-3.5 text-[18px] text-secondary">search</span>
+<input class="w-full bg-surface-container-lowest text-on-surface font-body-sm text-body-sm pl-10 pr-4 py-2.5 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-container/40 transition-all placeholder:text-secondary/70" id="order-search" placeholder="Search order, customer, SKU..." type="search"/>
+</div>
+<button id="filter-button" type="button" class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px] text-secondary">tune</span>
+<span>Filter</span>
+</button>
+<button id="export-orders" type="button" class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary-container text-surface-container-lowest font-label-md text-label-md shadow-sm hover:brightness-105 transition-all">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+<span>Export Orders</span>
+</button>
+</div>
+</div>
+<!-- Filter & Status Tabs + Batch Bar -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md bg-surface-container-lowest p-2.5 rounded-2xl shadow-sm">
+<!-- Status Segmented Pills -->
+<div class="flex items-center gap-1.5 overflow-x-auto pb-1 xl:pb-0" id="statusTabGroup">
+<button data-status="all" class="px-4 py-2 rounded-full font-label-md text-label-md bg-[#1E293B] text-surface-container-lowest transition-all whitespace-nowrap">
+        All <span class="ml-1 opacity-80 font-normal">1,248</span>
+</button>
+<button data-status="pending" class="px-4 py-2 rounded-full font-label-md text-label-md text-secondary hover:text-on-surface hover:bg-surface-container transition-all flex items-center gap-1.5 whitespace-nowrap">
+        Pending
+        <span class="px-2 py-0.2 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-[10px]">18</span>
+</button>
+<button data-status="fulfilled" class="px-4 py-2 rounded-full font-label-md text-label-md text-secondary hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap">
+        Fulfilled <span class="ml-1 opacity-70 font-normal">1,180</span>
+</button>
+<button data-status="canceled" class="px-4 py-2 rounded-full font-label-md text-label-md text-secondary hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap">
+        Canceled <span class="ml-1 opacity-70 font-normal">34</span>
+</button>
+<button data-status="refunded" class="px-4 py-2 rounded-full font-label-md text-label-md text-secondary hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap">
+        Refunded <span class="ml-1 opacity-70 font-normal">16</span>
+</button>
+</div>
+<!-- Secondary Batch / Context Controls -->
+<div class="flex flex-wrap items-center gap-2">
+<div id="date-filter" role="button" tabindex="0" id="channel-filter" role="button" tabindex="0" class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm cursor-pointer hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[16px] text-secondary">date_range</span>
+<span>Last 30 Days</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">expand_more</span>
+</div>
+<div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm cursor-pointer hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[16px] text-secondary">storefront</span>
+<span>All Channels: Online, POS, Instagram</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">expand_more</span>
+</div>
+<button class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-variant text-on-surface-variant hover:bg-primary-container hover:text-surface-container-lowest font-label-sm text-label-sm transition-colors" id="bulkFulfillBtn">
+<span class="material-symbols-outlined text-[16px]">done_all</span>
+<span>Mark as Fulfilled</span>
+</button>
+</div>
+</div>
+<!-- Orders Data Table Card -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/70">
+<th class="py-3.5 pl-6 pr-3 w-12">
+<input class="w-4 h-4 rounded text-primary-container focus:ring-0 focus:outline-none accent-primary-container cursor-pointer" id="selectAllCheckbox" type="checkbox"/>
+</th>
+<th class="py-3.5 px-4 font-label-sm text-label-sm uppercase tracking-wider text-secondary">Order ID</th>
+<th class="py-3.5 px-4 font-label-sm text-label-sm uppercase tracking-wider text-secondary">Item &amp; Summary</th>
+<th class="py-3.5 px-4 font-label-sm text-label-sm uppercase tracking-wider text-secondary">Customer</th>
+<th class="py-3.5 px-4 font-label-sm text-label-sm uppercase tracking-wider text-secondary">Date &amp; Time</th>
+<th class="py-3.5 px-4 font-label-sm text-label-sm uppercase tracking-wider text-secondary">Payment</th>
+<th class="py-3.5 px-4 font-label-sm text-label-sm uppercase tracking-wider text-secondary">Fulfillment</th>
+<th class="py-3.5 px-4 font-label-sm text-label-sm uppercase tracking-wider text-secondary text-right">Total</th>
+<th class="py-3.5 pl-4 pr-6 font-label-sm text-label-sm uppercase tracking-wider text-secondary text-center">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors group">
+<td class="py-4 pl-6 pr-3">
+<input class="row-checkbox w-4 h-4 rounded text-primary-container focus:ring-0 accent-primary-container cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-4 px-4 font-headline-sm text-label-lg text-on-surface font-semibold tracking-tight">
+              #ORD-9845
+            </td>
+<td class="py-4 px-4 min-w-[260px]">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Editorial close-up of a raw edge vintage indigo denim trucker jacket hanging against an off-white minimalist studio wall with soft natural morning light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmHDQhYIQA7FLiVb6NIO2y91joG3hSW5t881Pn9h4pQpg5pyGEMK1QncYAftOAbd5Rqgmf1WNkUGY73oMzkURxR8Lm3LcwlgWlCQexfPEgSrpzaV5lMsMQIPlCRi4Ll_e7G4WnjVmwv_4z21_yVnm2TfjDxpy7gDoliHk6RfJZPq3_U_HtCyHknYO6GwHpEHLlApVbpzFAO2DG5BqwS84ECS0ZBC50RkGrD_xq-lk2CgNIxNz67BUr"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface truncate">Raw Edge Denim Trucker Jacket</span>
+<span class="font-body-sm text-body-sm text-secondary truncate">Size L, Indigo • <span class="text-primary-container font-medium">+1 item</span></span>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Clara Oswald</span>
+<span class="font-body-sm text-body-sm text-secondary truncate max-w-[160px]">clara@example.com</span>
+</div>
+</td>
+<td class="py-4 px-4 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface">Oct 24, 2024</span>
+<span class="font-body-sm text-body-sm text-secondary">11:20 AM</span>
+</div>
+</td>
+<td class="py-4 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-secondary-fixed text-on-secondary-fixed">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mr-1.5"></span>Paid
+              </span>
+</td>
+<td class="py-4 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-3 py-1 rounded-full font-label-sm text-label-sm bg-tertiary-fixed text-on-tertiary-fixed font-semibold">
+<span class="material-symbols-outlined text-[13px] mr-1">schedule</span>Pending
+              </span>
+</td>
+<td class="py-4 px-4 text-right font-headline-sm text-label-lg text-on-surface font-semibold">
+              $168.00
+            </td>
+<td class="py-4 pl-4 pr-6 text-center">
+<div class="inline-flex items-center gap-1.5">
+<button class="px-3 py-1 rounded-full bg-primary-container text-surface-container-lowest font-label-sm text-label-sm hover:brightness-105 transition-all shadow-sm">
+                  Fulfill
+                </button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors group">
+<td class="py-4 pl-6 pr-3">
+<input class="row-checkbox w-4 h-4 rounded text-primary-container focus:ring-0 accent-primary-container cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-4 px-4 font-headline-sm text-label-lg text-on-surface font-semibold tracking-tight">
+              #ORD-9844
+            </td>
+<td class="py-4 px-4 min-w-[260px]">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Modern high quality heavyweight oatmeal pullover hoodie flat lay photograph on clean warm stone background with soft studio shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOcnBYma4MXYwplvybe80UhiVphjXe1j3egzrFAo1vy4So_IiC9IlGMsLjNk1ICfvAVDBVBk0XyyfW8so9sefrBQsqFmyr2wp7UAgq_5hS-Oft-AfrZeKCqWpqUoBxzrPXhPOJaoDneA-obr4t-yDayKERzvmKXEGuhW8VoKocWHYkYFyU4edcDKBbzNItZfttSEKSM87mIOygqV8rQGQ1ZP19_U4IfIDMQsaadrQEe_GZKefnU5vr"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface truncate">Relaxed Heavyweight Hoodie</span>
+<span class="font-body-sm text-body-sm text-secondary truncate">Size M, Oatmeal</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Julian Moore</span>
+<span class="font-body-sm text-body-sm text-secondary truncate max-w-[160px]">julian.m@company.org</span>
+</div>
+</td>
+<td class="py-4 px-4 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface">Oct 24, 2024</span>
+<span class="font-body-sm text-body-sm text-secondary">10:05 AM</span>
+</div>
+</td>
+<td class="py-4 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-secondary-fixed text-on-secondary-fixed">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mr-1.5"></span>Paid
+              </span>
+</td>
+<td class="py-4 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-3 py-1 rounded-full font-label-sm text-label-sm bg-[#DCFCE7] text-[#16A34A] font-semibold">
+<span class="material-symbols-outlined text-[13px] mr-1">check_circle</span>Fulfilled
+              </span>
+</td>
+<td class="py-4 px-4 text-right font-headline-sm text-label-lg text-on-surface font-semibold">
+              $88.00
+            </td>
+<td class="py-4 pl-4 pr-6 text-center">
+<div class="inline-flex items-center gap-1.5">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors group">
+<td class="py-4 pl-6 pr-3">
+<input class="row-checkbox w-4 h-4 rounded text-primary-container focus:ring-0 accent-primary-container cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-4 px-4 font-headline-sm text-label-lg text-on-surface font-semibold tracking-tight">
+              #ORD-9843
+            </td>
+<td class="py-4 px-4 min-w-[260px]">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Minimalist product photo of dark sage wide leg utility cargo trousers with contemporary pocket detailing draped on architectural display block." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdvjXYSHPQFJ-Zu7AOzgzSqhwER4KX9d2dLrlJHd0KUjpEpgSLpPobxzOS6DUFHoh7VPcgN5vVDbHQO4sKCu9kOP10WMKdDcVRM7YdAQi-wXQ7zCnsoPtLO4CyKJ5g6-p3nK9qpwI_pZkGR3z8r723MPYYr0WY1rdUhzWgfHSpwqsZhAoKo7omo5IImDDD3BYMQ5qv2flGT0uj330jpBQOe5SkwOXXCaMlxC6rAqfZM5yQ8REj0ZOP"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface truncate">Wide Leg Utility Cargo Pants</span>
+<span class="font-body-sm text-body-sm text-secondary truncate">Waist 32, Dark Sage</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Maya Lin</span>
+<span class="font-body-sm text-body-sm text-secondary truncate max-w-[160px]">maya.design@gmail.com</span>
+</div>
+</td>
+<td class="py-4 px-4 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface">Oct 24, 2024</span>
+<span class="font-body-sm text-body-sm text-secondary">09:48 AM</span>
+</div>
+</td>
+<td class="py-4 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-secondary-fixed text-on-secondary-fixed">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mr-1.5"></span>Paid
+              </span>
+</td>
+<td class="py-4 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-3 py-1 rounded-full font-label-sm text-label-sm bg-[#DCFCE7] text-[#16A34A] font-semibold">
+<span class="material-symbols-outlined text-[13px] mr-1">check_circle</span>Fulfilled
+              </span>
+</td>
+<td class="py-4 px-4 text-right font-headline-sm text-label-lg text-on-surface font-semibold">
+              $124.00
+            </td>
+<td class="py-4 pl-4 pr-6 text-center">
+<div class="inline-flex items-center gap-1.5">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors group">
+<td class="py-4 pl-6 pr-3">
+<input class="row-checkbox w-4 h-4 rounded text-primary-container focus:ring-0 accent-primary-container cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-4 px-4 font-headline-sm text-label-lg text-on-surface font-semibold tracking-tight">
+              #ORD-9842
+            </td>
+<td class="py-4 px-4 min-w-[260px]">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Editorial product shot of off-white heavyweight organic cotton boxy pocket t-shirt neatly folded on warm brushed concrete table." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAdQ7gWnbcHR8cPI-obp5qSF4r8bb_xqay7GqCMsTO7tYEl1Uj-NJ2Dvxj33sp-5Y1ioDw5S0mMya8UWeqk-MRGRLdhmYTWfXOcmNIdsrzT4jsk5r9gjAQGHw1-RLOGg2icDew0xJ4sI3stgXohzHHV0KBUPDrdxe8zbYKNUJgVZzrudm_C1iOKnzOkXoFkf9copflhhyvMzkaCEVyCkSnh9YIz2dCJyQ0R7WBzZARQnSIJqnZMiJX"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface truncate">Heavyweight Boxy Pocket Tee</span>
+<span class="font-body-sm text-body-sm text-secondary truncate">Size XL, Off-White</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Liam O'Connor</span>
+<span class="font-body-sm text-body-sm text-secondary truncate max-w-[160px]">liam.oc@outlook.com</span>
+</div>
+</td>
+<td class="py-4 px-4 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface">Oct 24, 2024</span>
+<span class="font-body-sm text-body-sm text-secondary">08:15 AM</span>
+</div>
+</td>
+<td class="py-4 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-surface-container-high text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary mr-1.5"></span>Refunded
+              </span>
+</td>
+<td class="py-4 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-3 py-1 rounded-full font-label-sm text-label-sm bg-surface-container-high text-secondary font-semibold">
+<span class="material-symbols-outlined text-[13px] mr-1">replay</span>Refunded
+              </span>
+</td>
+<td class="py-4 px-4 text-right font-headline-sm text-label-lg text-secondary font-semibold line-through">
+              $46.00
+            </td>
+<td class="py-4 pl-4 pr-6 text-center">
+<div class="inline-flex items-center gap-1.5">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors group">
+<td class="py-4 pl-6 pr-3">
+<input class="row-checkbox w-4 h-4 rounded text-primary-container focus:ring-0 accent-primary-container cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-4 px-4 font-headline-sm text-label-lg text-on-surface font-semibold tracking-tight">
+              #ORD-9841
+            </td>
+<td class="py-4 px-4 min-w-[260px]">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Premium textured charcoal wool blend overshirt apparel product photo on clean mannequin torso in a bright modern fashion atelier." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWspPzOMM1t_z43FjOO6ZRaz0_B8QbEO-eQLxxSK69B8ZZUaygmQ9cuFoiCiwL6dop6h_zeeL9lePpLiy93T3vsCHgxW5N4hb2b-2WFGT2Z7WqXeuPyBU__pOn5-WwHjf9cLrdLJziUcVpWCaTZm49dotbrVpNMzyDIPd0lJRRd28vEf5yhJZt0SLaye6sDD3Qwr6ZcGDQ0UutxXewyYcKru3yEj1o_XMezNtrmIxYK9vnecWDGPkl"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface truncate">Structured Wool Overshirt</span>
+<span class="font-body-sm text-body-sm text-secondary truncate">Size S, Charcoal</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Samantha Reed</span>
+<span class="font-body-sm text-body-sm text-secondary truncate max-w-[160px]">sam.reed@gmail.com</span>
+</div>
+</td>
+<td class="py-4 px-4 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface">Oct 23, 2024</span>
+<span class="font-body-sm text-body-sm text-secondary">06:30 PM</span>
+</div>
+</td>
+<td class="py-4 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-secondary-fixed text-on-secondary-fixed">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mr-1.5"></span>Paid
+              </span>
+</td>
+<td class="py-4 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-3 py-1 rounded-full font-label-sm text-label-sm bg-error-container text-error font-semibold">
+<span class="material-symbols-outlined text-[13px] mr-1">cancel</span>Canceled
+              </span>
+</td>
+<td class="py-4 px-4 text-right font-headline-sm text-label-lg text-secondary font-semibold">
+              $145.00
+            </td>
+<td class="py-4 pl-4 pr-6 text-center">
+<div class="inline-flex items-center gap-1.5">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-space-md bg-surface-container-lowest border-t-0">
+<span class="font-body-sm text-body-sm text-secondary">
+        Showing <span class="font-semibold text-on-surface">1</span> to <span class="font-semibold text-on-surface">5</span> of <span class="font-semibold text-on-surface">1,248</span> orders
+      </span>
+<!-- Pagination Nav -->
+<div class="flex items-center gap-1">
+<button class="flex items-center justify-center px-3.5 py-1.5 rounded-full text-secondary hover:text-on-surface hover:bg-surface-container font-label-sm text-label-sm transition-colors">
+<span class="material-symbols-outlined text-[16px] mr-1">chevron_left</span>
+<span>Prev</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-[#1E293B] text-surface-container-lowest font-label-sm text-label-sm flex items-center justify-center shadow-sm">
+          1
+        </button>
+<button class="w-8 h-8 rounded-full text-secondary hover:text-on-surface hover:bg-surface-container font-label-sm text-label-sm flex items-center justify-center transition-colors">
+          2
+        </button>
+<button class="w-8 h-8 rounded-full text-secondary hover:text-on-surface hover:bg-surface-container font-label-sm text-label-sm flex items-center justify-center transition-colors">
+          3
+        </button>
+<span class="px-1.5 text-secondary text-body-sm select-none">…</span>
+<button class="w-8 h-8 rounded-full text-secondary hover:text-on-surface hover:bg-surface-container font-label-sm text-label-sm flex items-center justify-center transition-colors">
+          12
+        </button>
+<button class="flex items-center justify-center px-3.5 py-1.5 rounded-full text-secondary hover:text-on-surface hover:bg-surface-container font-label-sm text-label-sm transition-colors">
+<span>Next</span>
+<span class="material-symbols-outlined text-[16px] ml-1">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function initOrdersInteractivity() {
+    const selectAll = document.getElementById('selectAllCheckbox');
+    const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+    const bulkFulfill = document.getElementById('bulkFulfillBtn');
+
+    if (selectAll) {
+      selectAll.addEventListener('change', (e) => {
+        rowCheckboxes.forEach((cb) => {
+          cb.checked = e.target.checked;
+        });
+      });
+    }
+
+    const tabGroup = document.getElementById('statusTabGroup');
+    if (tabGroup) {
+      const tabs = tabGroup.querySelectorAll('button');
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => {
+            t.classList.remove('bg-[#1E293B]', 'text-surface-container-lowest');
+            t.classList.add('text-secondary');
+          });
+          tab.classList.remove('text-secondary');
+          tab.classList.add('bg-[#1E293B]', 'text-surface-container-lowest');
+        });
+      });
+    }
+
+    const search = document.getElementById('order-search');
+    const rows = [...document.querySelectorAll('tbody tr')];
+    const applyFilters = () => {
+      const query = (search?.value || '').toLowerCase().trim();
+      const activeTab = document.querySelector('#statusTabGroup button.bg-\\[#1E293B\\]')?.dataset.status || 'all';
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.hidden = Boolean(query && !text.includes(query)) || (activeTab !== 'all' && !text.includes(activeTab));
+      });
+    };
+    search?.addEventListener('input', applyFilters);
+    document.querySelectorAll('#statusTabGroup button').forEach(tab => tab.addEventListener('click', applyFilters));
+    document.getElementById('selectAllCheckbox')?.addEventListener('change', event => document.querySelectorAll('.row-checkbox').forEach(box => box.checked = event.target.checked));
+    document.getElementById('bulkFulfillBtn')?.addEventListener('click', () => {
+      document.querySelectorAll('.row-checkbox:checked').forEach(box => { const cell = box.closest('tr').querySelector('td:nth-child(7)'); cell.textContent = 'Fulfilled'; cell.className = 'py-4 px-4 whitespace-nowrap text-primary font-semibold'; box.checked = false; });
+      document.getElementById('selectAllCheckbox').checked = false;
+    });
+    document.getElementById('export-orders')?.addEventListener('click', () => {
+      const csv = ['Order ID,Customer,Date,Total'].concat(rows.map(row => { const cells = row.querySelectorAll('td'); return [cells[1]?.innerText.trim(), cells[3]?.innerText.trim(), cells[4]?.innerText.trim(), cells[7]?.innerText.trim()].map(value => '"' + value.replace(/"/g, '""') + '"').join(','); })).join('\n');
+      const link = document.createElement('a'); link.href = URL.createObjectURL(new Blob([csv], {type: 'text/csv'})); link.download = 'orders.csv'; link.click(); URL.revokeObjectURL(link.href);
+    });
+    const menus = { 'date-filter': ['Today', 'Last 7 Days', 'Last 30 Days'], 'channel-filter': ['All Channels', 'Online Store', 'POS', 'Instagram'] };
+    Object.entries(menus).forEach(([id, options]) => { const trigger = document.getElementById(id); const menu = document.createElement('div'); menu.className = 'absolute z-50 mt-2 hidden rounded-xl border border-[#E5E7EB] bg-white p-2 shadow-xl'; menu.innerHTML = options.map(option => '<button type="button" class="block w-full rounded-lg px-3 py-2 text-left text-xs hover:bg-surface-container">' + option + '</button>').join(''); trigger.parentElement.classList.add('relative'); trigger.parentElement.appendChild(menu); trigger.addEventListener('click', () => menu.classList.toggle('hidden')); menu.querySelectorAll('button').forEach(option => option.addEventListener('click', () => { trigger.querySelector('span:nth-child(2)').textContent = option.textContent; menu.classList.add('hidden'); })); });
+    document.querySelectorAll('tbody button').forEach(button => button.addEventListener('click', () => { const row = button.closest('tr'); if (button.textContent.includes('visibility')) alert('Order details: ' + row.querySelector('td:nth-child(2)').textContent.trim()); else if (button.textContent.includes('more_vert')) alert('More actions are available for ' + row.querySelector('td:nth-child(2)').textContent.trim()); }));
+  })();
+</script></main></div><div id="shared-notifications-menu" class="fixed right-20 top-20 z-[70] hidden w-72 rounded-xl border border-[#E5E7EB] bg-white p-3 shadow-xl"><div class="flex items-center justify-between border-b border-[#E5E7EB] pb-2"><b class="text-sm">Notifications</b><button id="shared-mark-read" type="button" class="text-xs text-primary hover:underline">Mark all read</button></div><button type="button" class="mt-2 flex w-full gap-2 rounded-lg p-2 text-left text-xs hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-base text-tertiary">inventory_2</span><span><b>Low stock alert</b><br><span class="text-secondary">Heavyweight Hoodie has 6 left.</span></span></button><button type="button" class="flex w-full gap-2 rounded-lg p-2 text-left text-xs hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-base text-primary">shopping_bag</span><span><b>New order received</b><br><span class="text-secondary">Order #ORD-9842 is ready.</span></span></button></div><div id="shared-profile-menu" class="fixed right-4 top-20 z-[70] hidden w-52 rounded-xl border border-[#E5E7EB] bg-white p-2 shadow-xl"><div class="border-b border-[#E5E7EB] px-3 py-2"><b class="text-sm">Sarah Wilson</b><p class="text-xs text-secondary">Store administrator</p></div><button type="button" class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-xs hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-base">person</span>Account settings</button><button type="button" class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-xs hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-base">logout</span>Sign out</button></div><script>
+(() => {
+  const sidebar=document.getElementById('app-sidebar'), toggle=document.getElementById('sidebar-toggle');
+  toggle?.addEventListener('click',()=>sidebar.classList.toggle('is-open'));
+  const notification=document.getElementById('notifications-button'), profile=document.getElementById('profile-button');
+  const notificationMenu=document.getElementById('shared-notifications-menu') || document.getElementById('notifications-menu');
+  const profileMenu=document.getElementById('shared-profile-menu') || document.getElementById('profile-menu');
+  notification?.addEventListener('click',e=>{e.stopPropagation(); notificationMenu?.classList.toggle('hidden'); profileMenu?.classList.add('hidden');});
+  profile?.addEventListener('click',e=>{e.stopPropagation(); profileMenu?.classList.toggle('hidden'); notificationMenu?.classList.add('hidden');});
+  document.getElementById('shared-mark-read')?.addEventListener('click',()=>document.getElementById('notification-dot')?.classList.add('hidden'));
+  document.addEventListener('click',()=>{notificationMenu?.classList.add('hidden');profileMenu?.classList.add('hidden');});
+})();
+</script></body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

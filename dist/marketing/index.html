@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary": "#8c5000", "primary-container": "#06b6d4", "on-error": "#ffffff", "on-secondary-fixed": "#111c2d", "on-primary-container": "#00424f", "on-tertiary-fixed": "#2d1600", "on-tertiary-container": "#5b3200", "on-primary-fixed-variant": "#004e5c", "surface-container-low": "#eff4ff", "inverse-on-surface": "#eaf1ff", "surface-variant": "#d9e3f6", "secondary-fixed": "#d8e3fb", "on-secondary-container": "#586377", "tertiary-fixed": "#ffdcbf", "on-secondary": "#ffffff", "outline-variant": "#bcc9cd", "surface-dim": "#d0dbed", "on-error-container": "#93000a", "on-secondary-fixed-variant": "#3c475a", "on-surface-variant": "#3d494c", "on-tertiary": "#ffffff", "primary": "#00687a", "inverse-surface": "#27313f", "inverse-primary": "#4cd7f6", "secondary-container": "#d5e0f8", "error": "#ba1a1a", "outline": "#6d797d", "background": "#f8f9ff", "surface-bright": "#f8f9ff", "surface-container-lowest": "#ffffff", "surface-container-high": "#dee9fc", "on-primary": "#ffffff", "primary-fixed": "#acedff", "on-primary-fixed": "#001f26", "surface": "#f8f9ff", "surface-container-highest": "#d9e3f6", "surface-tint": "#00687a", "surface-container": "#e6eeff", "error-container": "#ffdad6", "secondary": "#545f73", "on-tertiary-fixed-variant": "#6a3b00", "secondary-fixed-dim": "#bcc7de", "tertiary-container": "#e89337", "primary-fixed-dim": "#4cd7f6", "tertiary-fixed-dim": "#ffb873", "on-background": "#121c2a", "on-surface": "#121c2a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "space-lg": "1.5rem", "gutter": "1.5rem", "space-xs": "0.25rem", "margin": "2rem", "margin-mobile": "1rem", "space-xl": "2rem", "gutter-sm": "1rem", "space-md": "1rem" }, "fontFamily": { "body-lg": [ "Plus Jakarta Sans" ], "headline-sm": [ "Plus Jakarta Sans" ], "label-md": [ "Plus Jakarta Sans" ], "display-lg": [ "Plus Jakarta Sans" ], "body-sm": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "label-lg": [ "Plus Jakarta Sans" ], "label-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ] }, "fontSize": { "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "headline-sm": [ "16px", { "lineHeight": "24px", "fontWeight": "600" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" } ], "display-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "headline-md": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "600" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ] } } } };</script><style>
+@media (max-width: 1023px) {
+  #app-sidebar { transform: translateX(-100%); transition: transform .25s ease; }
+  #app-sidebar.is-open { transform: translateX(0); }
+  .pl-60 { padding-left: 0 !important; }
+  header { left: 0 !important; }
+  #sidebar-toggle { display: grid; }
+}
+#sidebar-toggle { display: none; }
+@media (max-width: 1023px) { #sidebar-toggle { display: grid; } }
+</style></head><body class="bg-[#F5F6F8] font-body-md text-on-surface antialiased min-h-screen"><button id="sidebar-toggle" type="button" class="fixed left-4 top-4 z-[80] h-10 w-10 place-items-center rounded-xl border border-[#E5E7EB] bg-white text-secondary shadow-lg" aria-label="Toggle sidebar" title="Toggle sidebar"><span class="material-symbols-outlined">menu</span></button><aside id="app-sidebar" class="fixed left-0 top-0 h-screen w-60 bg-surface-container-lowest border-r border-[#E5E7EB] z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="h-24 px-5 flex items-center gap-3 border-b border-[#E5E7EB]/60"><div class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[#f1f4f6] p-1"><img alt="Thread &amp; Co logo" class="h-full w-full object-contain" src="http://127.0.0.1:8000/images/thread-co-logo.png"/></div><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Thread &amp; Co</span></div><nav class="px-space-md py-space-lg flex flex-col gap-1" data-active-classes="bg-[#1E293B] text-white font-label-lg rounded-xl"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="overview" href="/"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Overview</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="orders" href="/orders"><span class="material-symbols-outlined text-[20px]">shopping_bag</span><span>Orders</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="products" href="/products"><span class="material-symbols-outlined text-[20px]">checkroom</span><span>Products</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="customers" href="/customers"><span class="material-symbols-outlined text-[20px]">group</span><span>Customers</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="analytics" href="/analytics"><span class="material-symbols-outlined text-[20px]">analytics</span><span>Analytics</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-2.5 transition-colors bg-[#1E293B] text-white font-label-lg rounded-xl" data-path="marketing" href="/marketing"><span class="material-symbols-outlined text-[20px]">campaign</span><span>Marketing</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="settings" href="/settings"><span class="material-symbols-outlined text-[20px]">settings</span><span>Settings</span></a></nav></div><div class="p-space-md border-t border-[#E5E7EB]/60"><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-label-md text-label-md text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" href="#" target="_blank"><span>View Live Store</span><span class="material-symbols-outlined text-[18px]">open_in_new</span></a></div></aside><div class="pl-60"><header class="fixed top-0 left-60 right-0 h-20 bg-surface-container-lowest/95 backdrop-blur-md border-b border-[#E5E7EB] z-40 px-6 lg:px-10 flex items-center justify-between gap-6"><div class="flex min-w-0 flex-1 items-center"><h2 class="truncate font-headline-sm text-headline-sm text-on-surface">Marketing</h2></div><div class="flex shrink-0 items-center gap-3 lg:gap-5"><div class="flex items-center gap-2 px-3.5 py-2 bg-surface-container-lowest border border-[#E5E7EB] rounded-full text-secondary"><span class="material-symbols-outlined text-[18px]">search</span><span class="font-body-sm text-body-sm text-secondary hidden sm:inline">Search campaigns...</span></div><button id="notifications-button" type="button" class="relative w-10 h-10 rounded-full flex items-center justify-center text-secondary hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error"></span></button><div class="relative border-l border-[#E5E7EB] pl-3"><button id="profile-button" type="button" class="flex items-center gap-2 rounded-full p-1 hover:bg-[#F3F4F6]"><img alt="Profile" class="w-9 h-9 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFmkXMrn_7ixpAdQlDIVfe8lp5C5CNsa8QddYeeOLQx0fIURK85fmcg8J6URe1oqTrjrGE4PF70o90DX_V_RVCYB2aF03VKJB4VGmLuR0dETraHI0-b0FLK-GHgNPWzVUaGUu5gTQAt4Cw0c47P9blvDOwSdzczTirv4-2ilrS0NO83YxKw0kw8ofjovwbmdy0cnAi_snOYrU9XNfJ0quHR9026Xu6O7nEcDJT_NAEGfGooNfYuqKf"/><span class="material-symbols-outlined text-[18px] text-secondary">expand_more</span></button></div></div></header><main class="relative pt-24 w-full min-h-screen px-space-xl py-8 bg-[#F5F6F8]"><div class="flex flex-col w-full gap-space-lg pb-12">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Marketing</h1>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+          Live Sync
+        </span>
+</div>
+<p class="font-body-md text-body-md text-secondary">Acquisition campaigns, discount incentives, and abandoned cart recovery.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-container-lowest shadow-sm hover:bg-surface-container-low transition-all duration-200 text-on-surface font-label-lg text-label-lg active:scale-95">
+<span class="material-symbols-outlined text-[18px] text-secondary">auto_fix_high</span>
+<span>Automations</span>
+</button>
+<button class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary-container hover:bg-[#0891b2] text-on-primary font-label-lg text-label-lg shadow-sm hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>New Campaign</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="relative overflow-hidden bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+<div class="absolute -right-4 -bottom-4 w-28 h-28 bg-[#DBEAFE]/40 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary tracking-wide uppercase">Active Campaigns</span>
+<div class="w-11 h-11 rounded-full bg-[#DBEAFE] flex items-center justify-center text-[#1D4ED8]">
+<span class="material-symbols-outlined text-[22px]">campaign</span>
+</div>
+</div>
+<div class="mt-4 flex flex-col">
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg text-on-surface">4 live</span>
+<span class="font-label-md text-label-md text-secondary">+2 scheduled</span>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-[#16A34A] bg-[#DCFCE7] px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+            +18% traffic
+          </span>
+<span class="font-body-sm text-body-sm text-secondary">vs last week</span>
+</div>
+</div>
+</div>
+<div class="relative overflow-hidden bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+<div class="absolute -right-4 -bottom-4 w-28 h-28 bg-[#D1FAE5]/40 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary tracking-wide uppercase">Conversion Rate</span>
+<div class="w-11 h-11 rounded-full bg-[#D1FAE5] flex items-center justify-center text-[#059669]">
+<span class="material-symbols-outlined text-[22px]">ads_click</span>
+</div>
+</div>
+<div class="mt-4 flex flex-col">
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg text-on-surface">3.84%</span>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-[#16A34A] bg-[#DCFCE7] px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+            +0.6%
+          </span>
+<span class="font-body-sm text-body-sm text-secondary">vs industry benchmark (3.2%)</span>
+</div>
+</div>
+</div>
+<div class="relative overflow-hidden bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+<div class="absolute -right-4 -bottom-4 w-28 h-28 bg-[#EDE9FE]/50 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary tracking-wide uppercase">Abandoned Checkouts Recovered</span>
+<div class="w-11 h-11 rounded-full bg-[#EDE9FE] flex items-center justify-center text-[#7C3AED]">
+<span class="material-symbols-outlined text-[22px]">remove_shopping_cart</span>
+</div>
+</div>
+<div class="mt-4 flex flex-col">
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg text-on-surface">$8,450.00</span>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-[#7C3AED] bg-[#EDE9FE] px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px]">sync_saved_locally</span>
+            34.2% rate
+          </span>
+<span class="font-body-sm text-body-sm text-secondary">48 carts preserved this month</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden flex flex-col">
+<div class="p-space-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-surface-container-lowest">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-md text-headline-md text-on-surface">Active Discounts &amp; Promotions</h2>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm">4 codes</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary">Promotional incentives applied automatically or through customer checkout codes.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="relative flex items-center">
+<input class="w-48 pl-8 pr-3 py-1.5 bg-surface-container-low rounded-full font-body-sm text-body-sm text-on-surface placeholder:text-secondary outline-none focus:bg-surface-container-lowest transition-colors" placeholder="Filter codes..." type="text"/>
+<span class="material-symbols-outlined absolute left-2.5 text-[16px] text-secondary">search</span>
+</div>
+<button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary-container hover:bg-[#0891b2] text-on-primary font-label-md text-label-md transition-all active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Create Discount</span>
+</button>
+</div>
+</div>
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low/70">
+<th class="py-3 px-6 font-label-sm text-label-sm text-secondary uppercase tracking-wider">Discount Code</th>
+<th class="py-3 px-6 font-label-sm text-label-sm text-secondary uppercase tracking-wider">Discount Type</th>
+<th class="py-3 px-6 font-label-sm text-label-sm text-secondary uppercase tracking-wider">Uses / Limits</th>
+<th class="py-3 px-6 font-label-sm text-label-sm text-secondary uppercase tracking-wider">Expiration</th>
+<th class="py-3 px-6 font-label-sm text-label-sm text-secondary uppercase tracking-wider">Status</th>
+<th class="py-3 px-6 font-label-sm text-label-sm text-secondary uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y-0">
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">sell</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-mono tracking-tight group-hover:text-primary transition-colors">FALL20</span>
+<span class="font-body-sm text-body-sm text-secondary">Autumn Merch Campaign</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 font-body-md text-body-md text-on-surface">20% off all Knitwear &amp; Outerwear</td>
+<td class="py-4 px-6">
+<div class="flex flex-col gap-1 w-32">
+<span class="font-body-sm text-body-sm text-on-surface">342 / 500 uses</span>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 68%;"></div>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 font-body-md text-body-md text-secondary">Nov 15, 2024</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#DCFCE7] text-[#16A34A] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#16A34A]"></span>
+                Active
+              </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="w-8 h-8 rounded-full inline-flex items-center justify-center text-secondary hover:bg-surface-container hover:text-on-surface transition-colors" title="Manage Code">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">waving_hand</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-mono tracking-tight group-hover:text-primary transition-colors">WELCOME10</span>
+<span class="font-body-sm text-body-sm text-secondary">New Subscriber Acquisition</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 font-body-md text-body-md text-on-surface">10% off first order</td>
+<td class="py-4 px-6">
+<span class="font-body-sm text-body-sm text-on-surface">1,208 uses <span class="text-secondary">(unlimited)</span></span>
+</td>
+<td class="py-4 px-6 font-body-md text-body-md text-secondary">Never expires</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#DCFCE7] text-[#16A34A] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#16A34A]"></span>
+                Active
+              </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="w-8 h-8 rounded-full inline-flex items-center justify-center text-secondary hover:bg-surface-container hover:text-on-surface transition-colors" title="Manage Code">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-mono tracking-tight group-hover:text-primary transition-colors">FREESHIP</span>
+<span class="font-body-sm text-body-sm text-secondary">Cart Value Maximizer</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 font-body-md text-body-md text-on-surface">Free express shipping on $100+</td>
+<td class="py-4 px-6">
+<span class="font-body-sm text-body-sm text-on-surface">890 uses</span>
+</td>
+<td class="py-4 px-6 font-body-md text-body-md text-secondary">Dec 31, 2024</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#DCFCE7] text-[#16A34A] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#16A34A]"></span>
+                Active
+              </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="w-8 h-8 rounded-full inline-flex items-center justify-center text-secondary hover:bg-surface-container hover:text-on-surface transition-colors" title="Manage Code">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-mono tracking-tight group-hover:text-primary transition-colors">FLASH30</span>
+<span class="font-body-sm text-body-sm text-secondary">Weekend Denim Spike</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 font-body-md text-body-md text-on-surface">30% off Denim collection</td>
+<td class="py-4 px-6">
+<div class="flex flex-col gap-1 w-32">
+<span class="font-body-sm text-body-sm text-on-surface">0 / 200 uses</span>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 0%;"></div>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 font-body-md text-body-md text-secondary">Starts Oct 28</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#DBEAFE] text-[#1D4ED8] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#1D4ED8]"></span>
+                Scheduled
+              </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="w-8 h-8 rounded-full inline-flex items-center justify-center text-secondary hover:bg-surface-container hover:text-on-surface transition-colors" title="Manage Code">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden flex flex-col">
+<div class="p-space-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-surface-container-lowest">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-md text-headline-md text-on-surface">Abandoned Checkouts</h2>
+<span class="px-2 py-0.5 rounded-full bg-[#FEF3C7] text-[#B45309] font-label-sm text-label-sm">High intent</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<p class="font-body-sm text-body-sm text-secondary">Automatic recovery email is active (1 hr delay)</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-colors">
+<span class="material-symbols-outlined text-[18px] text-secondary">tune</span>
+<span>Delay Rules</span>
+</button>
+</div>
+</div>
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low/70">
+<th class="py-3 px-6 font-label-sm text-label-sm text-secondary uppercase tracking-wider">Customer</th>
+<th class="py-3 px-6 font-label-sm text-label-sm text-secondary uppercase tracking-wider">Cart Items</th>
+<th class="py-3 px-6 font-label-sm text-label-sm text-secondary uppercase tracking-wider">Cart Value</th>
+<th class="py-3 px-6 font-label-sm text-label-sm text-secondary uppercase tracking-wider">Time Abandoned</th>
+<th class="py-3 px-6 font-label-sm text-label-sm text-secondary uppercase tracking-wider text-right">Recovery Action</th>
+</tr>
+</thead>
+<tbody class="divide-y-0">
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center font-label-md text-label-md text-on-surface font-medium">
+                  HC
+                </div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Hannah Cole</span>
+<span class="font-body-sm text-body-sm text-secondary">hannah.c@gmail.com</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 rounded-lg overflow-hidden bg-surface-container-low flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up fashion photography of a premium French Terry hooded sweatshirt in heather grey folded neatly on minimalist marble surface, studio lighting with soft shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhxtdGxd1qVmEpKoV5_BdR77fUE9Pkjk9ed0gA_dTkiRDayZKGK8orEyolpb9bwVUd73-8mi3SbJUiAAzv8K5Wsh2Cvnr6aHiwsuSu_RImPjoSnQJnFbCU2Hw3BUHDmzBJo5FQFxQEHgS-yf06EKHDiz4b5LAUlvsJQC1fbYliMEaAit1ag9OUg2Wqw3ioojV35U6zqiBTNuNpFlXdJCAiwNCT8CJbMmV4uOMXDf6zBUqihc9OCgk7"/>
+</div>
+<div class="flex flex-col max-w-xs">
+<span class="font-body-md text-body-md text-on-surface truncate">French Terry Hoodie (M)</span>
+<span class="font-body-sm text-body-sm text-secondary truncate">+ Relaxed Beanie (Navy)</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<span class="font-headline-sm text-headline-sm text-on-surface">$120.00</span>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-1.5 text-secondary font-body-md text-body-md">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>45 minutes ago</span>
+</div>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-surface-container hover:bg-primary-container hover:text-on-primary text-on-surface font-label-md text-label-md transition-all active:scale-95 shadow-xs" onclick="handleSendReminder(this, 'Hannah Cole')">
+<span class="material-symbols-outlined text-[16px]">forward_to_inbox</span>
+<span>Send Reminder</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center font-label-md text-label-md text-on-surface font-medium">
+                  TR
+                </div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Tyler Ross</span>
+<span class="font-body-sm text-body-sm text-secondary">tyler.ross@agency.com</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 rounded-lg overflow-hidden bg-surface-container-low flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="High quality apparel product photo of structured Japanese selvedge denim jeans laid flat with brass button accents and crisp cuff turn-ups against soft off-white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsmjrMam2Z2JoztszsrS2O0IjApBOMfCvueJKSURAZNm80KzPuUSSe980V9-p68IV_xvhBv38xBiRK9D1te4ShR-Y7YeIehulaZBfozgi5pIxDxJdsKyWQK4MuUArUwfw078hRznOKOmGm-AVF7JCzJUwaEFicKtBl9ez6X7DVZzx6jqOe1jSZA3g8BROgKWLvMRMQ7F9-y7j2xaSujGoDj7JWCLkrig09rDDzQn05rdbOwH3Yl5mq"/>
+</div>
+<div class="flex flex-col max-w-xs">
+<span class="font-body-md text-body-md text-on-surface truncate">Japanese Selvedge Denim (L)</span>
+<span class="font-body-sm text-body-sm text-secondary">1 item</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<span class="font-headline-sm text-headline-sm text-on-surface">$195.00</span>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-1.5 text-secondary font-body-md text-body-md">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>3 hours ago</span>
+</div>
+</td>
+<td class="py-4 px-6 text-right">
+<span class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">done_all</span>
+<span>Email Sent</span>
+</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center font-label-md text-label-md text-on-surface font-medium">
+                  CB
+                </div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Chloe Bennett</span>
+<span class="font-body-sm text-body-sm text-secondary">chloe.b@icloud.com</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 rounded-lg overflow-hidden bg-surface-container-low flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Studio catalog product shot of a minimalist heavyweight boxy white organic cotton t-shirt paired with olive green utility cargo pants, architectural modern lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCUMv9tOon57Hcip9BQZNwDENpoKzWr7JXS8uH_6JUNzGhHuURELmt0D-SmuC9l3z3cQnc86uucc-fPkH1qc7KnmXSAGrvLSsWU2QlMPIYmB3PysDngAJMe5qCS7ybQyO_wQdurXnRcRY8sdovxQqpUiFAMCN1JhNgMF4F7l2bZBVI6OAd4lAUgNNNWN5j5OMR9fgRu67V_-sOghJvqzP1fS-6mzvcg8gZImWorgQkyfg7FSTQLRr2"/>
+</div>
+<div class="flex flex-col max-w-xs">
+<span class="font-body-md text-body-md text-on-surface truncate">Boxy Tee (White, L)</span>
+<span class="font-body-sm text-body-sm text-secondary truncate">+ Cargo Pants (30)</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<span class="font-headline-sm text-headline-sm text-on-surface">$166.00</span>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-1.5 text-secondary font-body-md text-body-md">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>5 hours ago</span>
+</div>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-surface-container hover:bg-primary-container hover:text-on-primary text-on-surface font-label-md text-label-md transition-all active:scale-95 shadow-xs" onclick="handleSendReminder(this, 'Chloe Bennett')">
+<span class="material-symbols-outlined text-[16px]">forward_to_inbox</span>
+<span>Send Reminder</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-space-md bg-surface-container-low/40 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-secondary">Displaying latest 3 high-value abandoned sessions</span>
+<button class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary hover:text-primary-container font-semibold transition-colors">
+<span>View all 48 carts</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+  function handleSendReminder(button, name) {
+    button.disabled = true;
+    button.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">refresh</span><span>Sending...</span>';
+    setTimeout(() => {
+      button.className = "inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container text-secondary font-label-md text-label-md cursor-default";
+      button.innerHTML = '<span class="material-symbols-outlined text-[16px] text-primary">done</span><span>Email Dispatched</span>';
+    }, 800);
+  }
+</script></main></div><div id="shared-notifications-menu" class="fixed right-20 top-20 z-[70] hidden w-72 rounded-xl border border-[#E5E7EB] bg-white p-3 shadow-xl"><div class="flex items-center justify-between border-b border-[#E5E7EB] pb-2"><b class="text-sm">Notifications</b><button id="shared-mark-read" type="button" class="text-xs text-primary hover:underline">Mark all read</button></div><button type="button" class="mt-2 flex w-full gap-2 rounded-lg p-2 text-left text-xs hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-base text-tertiary">inventory_2</span><span><b>Low stock alert</b><br><span class="text-secondary">Heavyweight Hoodie has 6 left.</span></span></button><button type="button" class="flex w-full gap-2 rounded-lg p-2 text-left text-xs hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-base text-primary">shopping_bag</span><span><b>New order received</b><br><span class="text-secondary">Order #ORD-9842 is ready.</span></span></button></div><div id="shared-profile-menu" class="fixed right-4 top-20 z-[70] hidden w-52 rounded-xl border border-[#E5E7EB] bg-white p-2 shadow-xl"><div class="border-b border-[#E5E7EB] px-3 py-2"><b class="text-sm">Sarah Wilson</b><p class="text-xs text-secondary">Store administrator</p></div><button type="button" class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-xs hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-base">person</span>Account settings</button><button type="button" class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-xs hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-base">logout</span>Sign out</button></div><script>
+(() => {
+  const sidebar=document.getElementById('app-sidebar'), toggle=document.getElementById('sidebar-toggle');
+  toggle?.addEventListener('click',()=>sidebar.classList.toggle('is-open'));
+  const notification=document.getElementById('notifications-button'), profile=document.getElementById('profile-button');
+  const notificationMenu=document.getElementById('shared-notifications-menu') || document.getElementById('notifications-menu');
+  const profileMenu=document.getElementById('shared-profile-menu') || document.getElementById('profile-menu');
+  notification?.addEventListener('click',e=>{e.stopPropagation(); notificationMenu?.classList.toggle('hidden'); profileMenu?.classList.add('hidden');});
+  profile?.addEventListener('click',e=>{e.stopPropagation(); profileMenu?.classList.toggle('hidden'); notificationMenu?.classList.add('hidden');});
+  document.getElementById('shared-mark-read')?.addEventListener('click',()=>document.getElementById('notification-dot')?.classList.add('hidden'));
+  document.addEventListener('click',()=>{notificationMenu?.classList.add('hidden');profileMenu?.classList.add('hidden');});
+})();
+</script></body></html>
+
+
+
+
+

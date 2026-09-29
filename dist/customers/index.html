@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary": "#8c5000", "primary-container": "#06b6d4", "on-error": "#ffffff", "on-secondary-fixed": "#111c2d", "on-primary-container": "#00424f", "on-tertiary-fixed": "#2d1600", "on-tertiary-container": "#5b3200", "on-primary-fixed-variant": "#004e5c", "surface-container-low": "#eff4ff", "inverse-on-surface": "#eaf1ff", "surface-variant": "#d9e3f6", "secondary-fixed": "#d8e3fb", "on-secondary-container": "#586377", "tertiary-fixed": "#ffdcbf", "on-secondary": "#ffffff", "outline-variant": "#bcc9cd", "surface-dim": "#d0dbed", "on-error-container": "#93000a", "on-secondary-fixed-variant": "#3c475a", "on-surface-variant": "#3d494c", "on-tertiary": "#ffffff", "primary": "#00687a", "inverse-surface": "#27313f", "inverse-primary": "#4cd7f6", "secondary-container": "#d5e0f8", "error": "#ba1a1a", "outline": "#6d797d", "background": "#f8f9ff", "surface-bright": "#f8f9ff", "surface-container-lowest": "#ffffff", "surface-container-high": "#dee9fc", "on-primary": "#ffffff", "primary-fixed": "#acedff", "on-primary-fixed": "#001f26", "surface": "#f8f9ff", "surface-container-highest": "#d9e3f6", "surface-tint": "#00687a", "surface-container": "#e6eeff", "error-container": "#ffdad6", "secondary": "#545f73", "on-tertiary-fixed-variant": "#6a3b00", "secondary-fixed-dim": "#bcc7de", "tertiary-container": "#e89337", "primary-fixed-dim": "#4cd7f6", "tertiary-fixed-dim": "#ffb873", "on-background": "#121c2a", "on-surface": "#121c2a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "space-lg": "1.5rem", "gutter": "1.5rem", "space-xs": "0.25rem", "margin": "2rem", "margin-mobile": "1rem", "space-xl": "2rem", "gutter-sm": "1rem", "space-md": "1rem" }, "fontFamily": { "body-lg": [ "Plus Jakarta Sans" ], "headline-sm": [ "Plus Jakarta Sans" ], "label-md": [ "Plus Jakarta Sans" ], "display-lg": [ "Plus Jakarta Sans" ], "body-sm": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "label-lg": [ "Plus Jakarta Sans" ], "label-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ] }, "fontSize": { "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "headline-sm": [ "16px", { "lineHeight": "24px", "fontWeight": "600" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" } ], "display-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "headline-md": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "600" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ] } } } };</script><style>
+@media (max-width: 1023px) {
+  #app-sidebar { transform: translateX(-100%); transition: transform .25s ease; }
+  #app-sidebar.is-open { transform: translateX(0); }
+  .pl-60 { padding-left: 0 !important; }
+  header { left: 0 !important; }
+  #sidebar-toggle { display: grid; }
+}
+#sidebar-toggle { display: none; }
+@media (max-width: 1023px) { #sidebar-toggle { display: grid; } }
+</style></head><body class="bg-[#F5F6F8] font-body-md text-on-surface antialiased min-h-screen"><button id="sidebar-toggle" type="button" class="fixed left-4 top-4 z-[80] h-10 w-10 place-items-center rounded-xl border border-[#E5E7EB] bg-white text-secondary shadow-lg" aria-label="Toggle sidebar" title="Toggle sidebar"><span class="material-symbols-outlined">menu</span></button><aside id="app-sidebar" class="fixed left-0 top-0 h-screen w-60 bg-surface-container-lowest border-r border-[#E5E7EB] z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="h-24 px-5 flex items-center gap-3 border-b border-[#E5E7EB]/60"><div class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[#f1f4f6] p-1"><img alt="Thread &amp; Co logo" class="h-full w-full object-contain" src="http://127.0.0.1:8000/images/thread-co-logo.png"/></div><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Thread &amp; Co</span></div><nav class="px-space-md py-space-lg flex flex-col gap-1" data-active-classes="bg-[#1E293B] text-white font-label-lg rounded-xl"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="overview" href="/"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Overview</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="orders" href="/orders"><span class="material-symbols-outlined text-[20px]">shopping_bag</span><span>Orders</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="products" href="/products"><span class="material-symbols-outlined text-[20px]">checkroom</span><span>Products</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-2.5 transition-colors bg-[#1E293B] text-white font-label-lg rounded-xl" data-path="customers" href="/customers"><span class="material-symbols-outlined text-[20px]">group</span><span>Customers</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="analytics" href="/analytics"><span class="material-symbols-outlined text-[20px]">analytics</span><span>Analytics</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="marketing" href="/marketing"><span class="material-symbols-outlined text-[20px]">campaign</span><span>Marketing</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" data-path="settings" href="/settings"><span class="material-symbols-outlined text-[20px]">settings</span><span>Settings</span></a></nav></div><div class="p-space-md border-t border-[#E5E7EB]/60"><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl font-label-md text-label-md text-[#6B7280] hover:bg-[#F3F4F6] hover:text-on-surface transition-colors" href="#" target="_blank"><span>View Live Store</span><span class="material-symbols-outlined text-[18px]">open_in_new</span></a></div></aside><div class="pl-60"><header class="fixed top-0 left-60 right-0 h-20 bg-surface-container-lowest/95 backdrop-blur-md border-b border-[#E5E7EB] z-40 px-6 lg:px-10 flex items-center justify-between gap-6"><div class="flex min-w-0 flex-1 items-center"><h2 class="truncate font-headline-sm text-headline-sm text-on-surface">Customers</h2></div><div class="flex shrink-0 items-center gap-3 lg:gap-5"><div class="flex items-center gap-2 px-3.5 py-2 bg-surface-container-lowest border border-[#E5E7EB] rounded-full text-secondary"><span class="material-symbols-outlined text-[18px]">search</span><span class="font-body-sm text-body-sm text-secondary hidden sm:inline">Search customers...</span></div><button id="notifications-button" type="button" class="relative w-10 h-10 rounded-full flex items-center justify-center text-secondary hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error"></span></button><div class="relative border-l border-[#E5E7EB] pl-3"><button id="profile-button" type="button" class="flex items-center gap-2 rounded-full p-1 hover:bg-[#F3F4F6]"><img alt="Profile" class="w-9 h-9 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFmkXMrn_7ixpAdQlDIVfe8lp5C5CNsa8QddYeeOLQx0fIURK85fmcg8J6URe1oqTrjrGE4PF70o90DX_V_RVCYB2aF03VKJB4VGmLuR0dETraHI0-b0FLK-GHgNPWzVUaGUu5gTQAt4Cw0c47P9blvDOwSdzczTirv4-2ilrS0NO83YxKw0kw8ofjovwbmdy0cnAi_snOYrU9XNfJ0quHR9026Xu6O7nEcDJT_NAEGfGooNfYuqKf"/><span class="material-symbols-outlined text-[18px] text-secondary">expand_more</span></button></div></div></header><main class="relative pt-24 w-full min-h-screen px-space-xl py-8 bg-[#F5F6F8]"><div class="flex flex-col w-full gap-space-lg">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Customers</h1>
+<p class="font-body-sm text-body-sm text-secondary mt-0.5">Track customer purchase history, retention, and lifetime value.</p>
+</div>
+<div class="flex items-center flex-wrap gap-3">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-[18px] text-secondary pointer-events-none">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-lowest text-on-surface font-body-sm text-body-sm rounded-full shadow-sm placeholder:text-outline w-64 md:w-80 focus:outline-none focus:ring-2 focus:ring-primary-container transition-all" placeholder="Search customer by name, email, phone..." type="text"/>
+</div>
+<button class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container-low active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px] text-secondary">file_download</span>
+<span>Export CSV</span>
+</button>
+<button class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary-container text-on-error font-label-md text-label-md shadow-sm hover:brightness-95 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+<span>Add Customer</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">New This Month</span>
+<div class="w-11 h-11 rounded-full bg-[#D1FAE5] flex items-center justify-center text-[#059669]">
+<span class="material-symbols-outlined text-[22px]">person_add</span>
+</div>
+</div>
+<div class="mt-4 flex items-baseline justify-between">
+<span class="font-display-lg text-display-lg text-on-surface font-bold tracking-tight">42</span>
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#D1FAE5]/60 text-[#047857] font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>+18% vs last month</span>
+</div>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full mt-4 overflow-hidden">
+<div class="bg-[#10B981] h-full rounded-full" style="width: 68%;"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Returning Customer Rate</span>
+<div class="w-11 h-11 rounded-full bg-[#DBEAFE] flex items-center justify-center text-[#2563EB]">
+<span class="material-symbols-outlined text-[22px]">replay</span>
+</div>
+</div>
+<div class="mt-4 flex items-baseline justify-between">
+<span class="font-display-lg text-display-lg text-on-surface font-bold tracking-tight">38.4%</span>
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#DBEAFE]/60 text-[#1D4ED8] font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+<span>+2.3% repeat rate</span>
+</div>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full mt-4 overflow-hidden">
+<div class="bg-[#3B82F6] h-full rounded-full" style="width: 44%;"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Avg. Customer Lifetime Value</span>
+<div class="w-11 h-11 rounded-full bg-[#EDE9FE] flex items-center justify-center text-[#7C3AED]">
+<span class="material-symbols-outlined text-[22px]">account_balance_wallet</span>
+</div>
+</div>
+<div class="mt-4 flex items-baseline justify-between">
+<span class="font-display-lg text-display-lg text-on-surface font-bold tracking-tight">$186.50</span>
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#EDE9FE]/60 text-[#6D28D9] font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>+$14.20 growth</span>
+</div>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full mt-4 overflow-hidden">
+<div class="bg-[#8B5CF6] h-full rounded-full" style="width: 82%;"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="p-space-md sm:p-space-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-surface-container-lowest">
+<div class="flex items-center gap-2 flex-wrap">
+<button class="px-3.5 py-1.5 rounded-full font-label-sm text-label-sm bg-on-secondary-fixed text-on-error shadow-sm transition-all">
+          All Customers <span class="ml-1 opacity-70">3,420</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container text-secondary hover:bg-surface-container-high transition-colors">
+          VIP Repeat Buyers <span class="ml-1 opacity-70">412</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container text-secondary hover:bg-surface-container-high transition-colors">
+          First-time Buyers <span class="ml-1 opacity-70">1,890</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container text-secondary hover:bg-surface-container-high transition-colors">
+          Inactive &gt; 90 days <span class="ml-1 opacity-70">620</span>
+</button>
+</div>
+<div class="flex items-center gap-2 self-end sm:self-auto">
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-secondary font-label-sm text-label-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span>Filter</span>
+</button>
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-secondary font-label-sm text-label-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">swap_vert</span>
+<span>Sort</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/70">
+<th class="py-3.5 px-6 font-label-sm text-label-sm uppercase tracking-wider text-secondary">Customer</th>
+<th class="py-3.5 px-4 font-label-sm text-label-sm uppercase tracking-wider text-secondary">Location</th>
+<th class="py-3.5 px-4 font-label-sm text-label-sm uppercase tracking-wider text-secondary">Total Orders</th>
+<th class="py-3.5 px-4 font-label-sm text-label-sm uppercase tracking-wider text-secondary">Total Spent</th>
+<th class="py-3.5 px-4 font-label-sm text-label-sm uppercase tracking-wider text-secondary">Avg. Order Value</th>
+<th class="py-3.5 px-4 font-label-sm text-label-sm uppercase tracking-wider text-secondary">Last Order</th>
+<th class="py-3.5 px-6 font-label-sm text-label-sm uppercase tracking-wider text-secondary">Segment</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<tr class="hover:bg-surface-container-low/50 transition-colors group cursor-pointer">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-primary-container/15 flex items-center justify-center text-primary font-label-md text-label-md">
+<img class="w-full h-full object-cover" data-alt="Portrait photo of Marcus Vance, confident modern urban menswear buyer with clean styled beard, neutral high-end apparel studio backdrop with warm cinematic key light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVr-mCiFA3HhIvApOWN7nROSgw7PO6AgoaM8KRfaHTeRIVRREsCDgVErEO_TJTDzXrhNvE6kK7oBJ8L9PkWGoDakZtoOGbO_397dCJj2N23TFOlN5k1mtWTP794UJaAxW94QqKgbFwY-Pf09fvuAcSp1h5XHyZqHq03E5MFcWDnfyEcCCIUAiK_zCFsfKP75Ax2WB4E7M2-ip83HuV9TfamZQv6qgNcXRI70XVUrymF6y7rHfAsRL5"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Marcus Vance</span>
+<span class="font-body-sm text-body-sm text-secondary truncate">marcus.v@gmail.com</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-on-surface">
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-[16px] text-outline">location_on</span>
+<span class="text-on-surface">Brooklyn, NY, US</span>
+</div>
+</td>
+<td class="py-4 px-4 font-body-sm text-body-sm">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-medium">
+                8 orders
+              </span>
+</td>
+<td class="py-4 px-4 font-label-lg text-label-lg font-bold text-on-surface">$784.00</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-secondary">$98.00</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-secondary">Today, 10:42 AM</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-[#EDE9FE] text-[#6D28D9] font-label-sm text-label-sm font-semibold">
+                VIP Repeat
+              </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors group cursor-pointer">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-[#FEE2E2] flex items-center justify-center text-error font-label-md text-label-md">
+<img class="w-full h-full object-cover" data-alt="Close up editorial portrait of stylish woman Elena Rostova in chic minimalist beige wool coat, studio portrait lighting with soft neutral shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGJIcppAZ0gGOOycULWE1NJ8B_fQwrDcO_qaNkhvJerLiMocbwOaWK3D8ta90aeIHtaUWMFGDRQiHqZ4X5RaMrdg-NGZKhcpxOHasGz39x47YO3oAfAMeLwB5hTajfzdJAq_2PtgSETN5HDJNzWzCv0nton0gO_WIYlTa9_dKbD8jMQPxwxI3xpjcQatOYF6ZG6dWSqn71fVEGMwctw0TE4_2S2wI2XVdW8j60Yl6DUsR41PiuM-j_"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Elena Rostova</span>
+<span class="font-body-sm text-body-sm text-secondary truncate">elena.rostova@icloud.com</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-on-surface">
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-[16px] text-outline">location_on</span>
+<span class="text-on-surface">Chicago, IL, US</span>
+</div>
+</td>
+<td class="py-4 px-4 font-body-sm text-body-sm">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-medium">
+                5 orders
+              </span>
+</td>
+<td class="py-4 px-4 font-label-lg text-label-lg font-bold text-on-surface">$462.00</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-secondary">$92.40</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-secondary">Yesterday</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-[#EDE9FE] text-[#6D28D9] font-label-sm text-label-sm font-semibold">
+                VIP Repeat
+              </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors group cursor-pointer">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-[#DBEAFE] flex items-center justify-center text-[#1E40AF] font-label-md text-label-md">
+<img class="w-full h-full object-cover" data-alt="Headshot of David Chen wearing minimalist dark crewneck knitwear in bright contemporary architectural setting with clean diffused natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIFKoCJ7Nn2Y3G6vjCOq1iIrHKL2QJM6Y6zoGh4C1QCHhSMs3bLqhAyW791AxobqJeS92GnVRj1lIIOGYrkr8UohdvX4zv2cAZrnQgJzuiMEBAG0k6Zrl_C5zS3qBy13ayOxrOSWzRiV8VrGifgoem4sNX7hPUJQNepzugDAR-ES23Sux_9UDzC6DlmK46CXSMg-cSVh4USTs4KpPB4GQT36_1tWrGZU3BdfIN1HOZmjyhvVWFMdRH"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold truncate group-hover:text-primary transition-colors">David Chen</span>
+<span class="font-body-sm text-body-sm text-secondary truncate">david.chen@techcorp.io</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-on-surface">
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-[16px] text-outline">location_on</span>
+<span class="text-on-surface">San Francisco, CA, US</span>
+</div>
+</td>
+<td class="py-4 px-4 font-body-sm text-body-sm">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-medium">
+                3 orders
+              </span>
+</td>
+<td class="py-4 px-4 font-label-lg text-label-lg font-bold text-on-surface">$310.00</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-secondary">$103.33</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-secondary">Oct 21, 2024</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-[#DBEAFE] text-[#1D4ED8] font-label-sm text-label-sm font-semibold">
+                Regular
+              </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors group cursor-pointer">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-[#FEF3C7] flex items-center justify-center text-[#B45309] font-label-md text-label-md">
+<img class="w-full h-full object-cover" data-alt="Vibrant studio portrait of Sophia Martinez wearing contemporary patterned silk scarf and modern minimal gold jewelry, bright cheerful daylight setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkwgX_gXZQKzhByqSDSKF1dV4g5sGe0Qu0E8Bi7KcpaXFLlNBAYqpQ2XrHJ2hYLvOFIlrWuUpQKmpo-uv21sb9eOqvFQ91M7iuMjctdgrOoEuohmvu8fvpA1nLJj--9yBUeKYA7Qk1S8xsleaH3iKqgFa-TN3aA2sZHSgSaKR-5ar3dUOUaJTa8zYaTy2a83Er9XCiAFPbBNz947qXNxpDkTYAyj8AHey9MV3nzrG-V1lG21AmG-NI"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Sophia Martinez</span>
+<span class="font-body-sm text-body-sm text-secondary truncate">sophia.m@designstudio.co</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-on-surface">
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-[16px] text-outline">location_on</span>
+<span class="text-on-surface">Austin, TX, US</span>
+</div>
+</td>
+<td class="py-4 px-4 font-body-sm text-body-sm">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-medium">
+                1 order
+              </span>
+</td>
+<td class="py-4 px-4 font-label-lg text-label-lg font-bold text-on-surface">$240.00</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-secondary">$240.00</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-secondary">Oct 20, 2024</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-[#DCFCE7] text-[#15803D] font-label-sm text-label-sm font-semibold">
+                New Buyer
+              </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors group cursor-pointer">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-label-md text-label-md">
+<img class="w-full h-full object-cover" data-alt="Modern studio headshot of Liam Taylor in clean linen shirt against clean slate background, soft ambient studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAPU4rrkT9eOotLAWwfBH5cR_J91cHShbfK6iJNsrW-7QjA82T5UBUhY93DF0_AUtmBgJ5Ev2FYxus2WwSzDNdNIwHD_igxS4U38tRlA5avzDA7uKXax5ahuupkrLRHSHY8SgRaeHFzMsMNNiqdNN9FLPNUUZXdO_4Ufw7Rhwn9jGzG86eO2uZo3Xm9yqfe2XMju15Qr00m598fPdFamQaYxrr8WBOgfU1DwIoOvfDVIW12KfVRkJV"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Liam Taylor</span>
+<span class="font-body-sm text-body-sm text-secondary truncate">liam.taylor@live.com</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-on-surface">
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-[16px] text-outline">location_on</span>
+<span class="text-on-surface">Seattle, WA, US</span>
+</div>
+</td>
+<td class="py-4 px-4 font-body-sm text-body-sm">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-medium">
+                4 orders
+              </span>
+</td>
+<td class="py-4 px-4 font-label-lg text-label-lg font-bold text-on-surface">$328.00</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-secondary">$82.00</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-secondary">Oct 18, 2024</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-[#DBEAFE] text-[#1D4ED8] font-label-sm text-label-sm font-semibold">
+                Regular
+              </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 bg-surface-container-lowest">
+<span class="font-body-sm text-body-sm text-secondary">
+        Showing <span class="font-semibold text-on-surface">1</span> to <span class="font-semibold text-on-surface">5</span> of <span class="font-semibold text-on-surface">3,420</span> customers
+      </span>
+<div class="flex items-center gap-1.5 select-none">
+<button class="px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-low text-secondary hover:text-on-surface hover:bg-surface-container transition-colors disabled:opacity-40" disabled="">
+          Prev
+        </button>
+<button class="w-8 h-8 rounded-full font-label-sm text-label-sm bg-on-secondary-fixed text-on-error font-semibold flex items-center justify-center shadow-sm">
+          1
+        </button>
+<button class="w-8 h-8 rounded-full font-label-sm text-label-sm text-secondary hover:bg-surface-container hover:text-on-surface flex items-center justify-center transition-colors">
+          2
+        </button>
+<button class="w-8 h-8 rounded-full font-label-sm text-label-sm text-secondary hover:bg-surface-container hover:text-on-surface flex items-center justify-center transition-colors">
+          3
+        </button>
+<span class="px-1 text-secondary font-label-sm">...</span>
+<button class="w-8 h-8 rounded-full font-label-sm text-label-sm text-secondary hover:bg-surface-container hover:text-on-surface flex items-center justify-center transition-colors">
+          684
+        </button>
+<button class="px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-low text-secondary hover:text-on-surface hover:bg-surface-container transition-colors">
+          Next
+        </button>
+</div>
+</div>
+</div>
+</div></main></div><div id="shared-notifications-menu" class="fixed right-20 top-20 z-[70] hidden w-72 rounded-xl border border-[#E5E7EB] bg-white p-3 shadow-xl"><div class="flex items-center justify-between border-b border-[#E5E7EB] pb-2"><b class="text-sm">Notifications</b><button id="shared-mark-read" type="button" class="text-xs text-primary hover:underline">Mark all read</button></div><button type="button" class="mt-2 flex w-full gap-2 rounded-lg p-2 text-left text-xs hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-base text-tertiary">inventory_2</span><span><b>Low stock alert</b><br><span class="text-secondary">Heavyweight Hoodie has 6 left.</span></span></button><button type="button" class="flex w-full gap-2 rounded-lg p-2 text-left text-xs hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-base text-primary">shopping_bag</span><span><b>New order received</b><br><span class="text-secondary">Order #ORD-9842 is ready.</span></span></button></div><div id="shared-profile-menu" class="fixed right-4 top-20 z-[70] hidden w-52 rounded-xl border border-[#E5E7EB] bg-white p-2 shadow-xl"><div class="border-b border-[#E5E7EB] px-3 py-2"><b class="text-sm">Sarah Wilson</b><p class="text-xs text-secondary">Store administrator</p></div><button type="button" class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-xs hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-base">person</span>Account settings</button><button type="button" class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-xs hover:bg-[#F3F4F6]"><span class="material-symbols-outlined text-base">logout</span>Sign out</button></div><script>
+(() => {
+  const sidebar=document.getElementById('app-sidebar'), toggle=document.getElementById('sidebar-toggle');
+  toggle?.addEventListener('click',()=>sidebar.classList.toggle('is-open'));
+  const notification=document.getElementById('notifications-button'), profile=document.getElementById('profile-button');
+  const notificationMenu=document.getElementById('shared-notifications-menu') || document.getElementById('notifications-menu');
+  const profileMenu=document.getElementById('shared-profile-menu') || document.getElementById('profile-menu');
+  notification?.addEventListener('click',e=>{e.stopPropagation(); notificationMenu?.classList.toggle('hidden'); profileMenu?.classList.add('hidden');});
+  profile?.addEventListener('click',e=>{e.stopPropagation(); profileMenu?.classList.toggle('hidden'); notificationMenu?.classList.add('hidden');});
+  document.getElementById('shared-mark-read')?.addEventListener('click',()=>document.getElementById('notification-dot')?.classList.add('hidden'));
+  document.addEventListener('click',()=>{notificationMenu?.classList.add('hidden');profileMenu?.classList.add('hidden');});
+})();
+</script></body></html>
+
+
+
+
+
+
+
+
+
